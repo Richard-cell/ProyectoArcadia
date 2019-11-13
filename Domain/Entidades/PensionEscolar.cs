@@ -13,7 +13,7 @@ namespace Domain.Entidades
         public DateTime FechaLimitePagoPension { get; private set; }
         public string EstadoPensionEscolar { get; private set; }
         public List<Pago> Pagos { get; private set; }
-        public int MatriculaId { get; private set; }
+        public int EstudianteId { get; private set; }
 
         public PensionEscolar()
         {
@@ -26,6 +26,20 @@ namespace Domain.Entidades
             FechaFinPension = fechaFinPension;
             FechaLimitePagoPension = fechaLimitePagoPension;
             EstadoPensionEscolar = estadoPensionEscolar;
+        }
+
+        public bool IsAlmacenarPago(Pago pago)
+        {
+            try
+            {
+                Pagos.Add(pago);
+                return true;
+            }
+            catch (Exception E)
+            {
+                Console.WriteLine(E);
+                return false;
+            }
         }
     }
 }

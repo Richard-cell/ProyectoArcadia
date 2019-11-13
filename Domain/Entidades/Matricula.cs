@@ -7,19 +7,20 @@ namespace Domain.Entidades
 {
     public class Matricula: Entity<int>
     {
+        private float _valorMatriculaActual = 620000;
         public long CodigoMatricula { get; private set; }
         public DateTime FechaMatricula { get; private set; }
         public Estudiante Estudiante { get; private set; }
         public Acudiente Acudiente { get; private set; }
         public int NumeroDocumentosAdjuntados { get;private set; }
+        public float ValorMatricula { get; private set; }
         public string EstadoMatricula { get; private set; }
-        public PensionEscolar PensionEscolar { get; private set; }
 
         public Matricula()
         {
         }
 
-        public Matricula(long codigoMatricula, DateTime fechaMatricula, Estudiante estudiante, Acudiente acudiente, int numeroDocumentosAdjuntados, string estadoMatricula, PensionEscolar pensionEscolar)
+        public Matricula(long codigoMatricula, DateTime fechaMatricula, Estudiante estudiante, Acudiente acudiente, int numeroDocumentosAdjuntados, string estadoMatricula)
         {
             CodigoMatricula = codigoMatricula;
             FechaMatricula = fechaMatricula;
@@ -27,7 +28,12 @@ namespace Domain.Entidades
             Acudiente = acudiente;
             NumeroDocumentosAdjuntados = numeroDocumentosAdjuntados;
             EstadoMatricula = estadoMatricula;
-            PensionEscolar  = pensionEscolar;
+            ValorMatricula = _valorMatriculaActual;
+        }
+
+        public bool IsValidarNumeroDocumentos()
+        {
+            return NumeroDocumentosAdjuntados == 8;
         }
     }
 }

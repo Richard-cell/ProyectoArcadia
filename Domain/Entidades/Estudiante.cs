@@ -18,13 +18,14 @@ namespace Domain.Entidades
         public int MatriculaId { get; private set; }
         public int CursoId { get; private set; }
         public Acudiente RepresentanteLegal { get; private set; }
-        public List<Nota> ListaNotas { get; private set; }
+        public PensionEscolar PensionEscolar { get; private set; }
+        public List<Nota> ListaNotas { get; set; }
 
         public Estudiante()
         {
         }
 
-        public Estudiante(string tipoDocumento, long numeroIdentificacion, string primerNombre, string segundoNombre, string primerApellido, string segundoApellido, string direccion, long telefono, string lugarNacimiento, DateTime fechaNacimiento, string rH, int numeroHermanos, int lugarEntreHermanos, string seguroSocial, int estratoSocial, float puntajeSisben, Acudiente representanteLegal, char sexo) :base(tipoDocumento,numeroIdentificacion,primerNombre,segundoNombre,primerApellido,segundoApellido,direccion,telefono, sexo)
+        public Estudiante(string tipoDocumento, long numeroIdentificacion, string primerNombre, string segundoNombre, string primerApellido, string segundoApellido, string direccion, long telefono, string lugarNacimiento, DateTime fechaNacimiento, string rH, int numeroHermanos, int lugarEntreHermanos, string seguroSocial, int estratoSocial, float puntajeSisben, Acudiente representanteLegal, char sexo, PensionEscolar pensionEscolar) :base(tipoDocumento,numeroIdentificacion,primerNombre,segundoNombre,primerApellido,segundoApellido,direccion,telefono, sexo)
         {
             LugarNacimiento = lugarNacimiento;
             FechaNacimiento = fechaNacimiento;
@@ -35,6 +36,21 @@ namespace Domain.Entidades
             EstratoSocial = estratoSocial;
             PuntajeSisben = puntajeSisben;
             RepresentanteLegal = representanteLegal;
+            PensionEscolar = pensionEscolar;
+        }
+
+        public bool IsAlmacenarNota(Nota nota)
+        {
+            try
+            {
+                ListaNotas.Add(nota);
+                return true;
+            }
+            catch (Exception E)
+            {
+                Console.WriteLine(E);
+                return false;
+            }
         }
     }
 }

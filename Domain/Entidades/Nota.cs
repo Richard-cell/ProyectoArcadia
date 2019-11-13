@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Domain.Entidades
 {
-    public class Nota: Entity<int>
+    public class Nota : Entity<int>
     {
         public long CodigoNota { get; private set; }
         public float NotaPrimerPeriodo { get; private set; }
@@ -21,21 +21,27 @@ namespace Domain.Entidades
         {
         }
 
-        public Nota(long codigoNota, float notaPrimerPeriodo, float notaSegundoPeriodo, float notaTercerPeriodo, float notaCuartoPeriodo, Estudiante estudiante, Asignatura asignatura)
+        public Nota(long codigoNota, float notaPrimerPeriodo, float notaSegundoPeriodo, float notaTercerPeriodo, float notaCuartoPeriodo, Asignatura asignatura)
         {
             CodigoNota = codigoNota;
             NotaPrimerPeriodo = notaPrimerPeriodo;
             NotaSegundoPeriodo = notaSegundoPeriodo;
             NotaTercerPeriodo = notaTercerPeriodo;
             NotaCuartoPeriodo = notaCuartoPeriodo;
-            Estudiante = estudiante;
             Asignatura = asignatura;
             CalcularPromedio();
         }
 
-        public void CalcularPromedio()
+        private void CalcularPromedio()
         {
-            PromedioNota = (NotaPrimerPeriodo+NotaSegundoPeriodo+NotaTercerPeriodo+NotaCuartoPeriodo) / 4;
+            PromedioNota = (NotaPrimerPeriodo + NotaSegundoPeriodo + NotaTercerPeriodo + NotaCuartoPeriodo) / 4;
+        }
+
+        public bool IsNotaValida() {
+            return (NotaPrimerPeriodo < 0 || NotaPrimerPeriodo > 5) ||
+                   (NotaSegundoPeriodo < 0 || NotaSegundoPeriodo > 5) ||
+                   (NotaTercerPeriodo < 0 || NotaTercerPeriodo > 5) ||
+                   (NotaCuartoPeriodo < 0 || NotaCuartoPeriodo > 5);               
         }
     }
 }
