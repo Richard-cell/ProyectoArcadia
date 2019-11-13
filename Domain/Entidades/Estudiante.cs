@@ -17,8 +17,8 @@ namespace Domain.Entidades
         public float PuntajeSisben { get; private set; }
         public int MatriculaId { get; private set; }
         public int CursoId { get; private set; }
-        public int NotaId { get; set; }
         public Acudiente RepresentanteLegal { get; private set; }
+        public List<Nota> ListaNotas { get; private set; }
 
         public Estudiante()
         {

@@ -9,19 +9,17 @@ namespace Domain.Entidades
     {
         public long CodigoCurso { get; private set; }
         public int GradoCurso { get; private set; }
-        public List<Docente> ListaDocentes { get; private set; }
+        public List<DocenteCurso> DocenteCurso { get; private set; }
         public List<Estudiante> ListaEstudiantes { get; private set; }
 
         public Curso()
         {
         }
 
-        public Curso(long codigoCurso, int gradoCurso, List<Docente> listaDocentes, List<Estudiante> listaEstudiantes)
+        public Curso(long codigoCurso, int gradoCurso)
         {
             CodigoCurso = codigoCurso;
             GradoCurso = gradoCurso;
-            ListaDocentes = listaDocentes;
-            ListaEstudiantes = listaEstudiantes;
         }
     }
 }

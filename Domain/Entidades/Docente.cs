@@ -9,7 +9,8 @@ namespace Domain.Entidades
     {
         public int Edad { get; private set; }
         public int AñosExperiencia { get; private set; }
-        public int CursoId { get; private set; }
+        public List<DocenteCurso> DocenteCurso{ get; private set; }
+        public List<DocenteAsignatura> DocenteAsignatura { get; private set; }
         public Docente()
         {
         }

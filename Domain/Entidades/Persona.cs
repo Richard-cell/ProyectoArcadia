@@ -15,7 +15,6 @@ namespace Domain.Base
         public string SegundoApellido { get; private set; }
         public string Direccion { get; private set; }
         public long Telefono { get; private set; }
-
         public char Sexo { get; private set; }
 
         public Persona() {}

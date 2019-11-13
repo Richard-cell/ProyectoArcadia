@@ -13,9 +13,9 @@ namespace Domain.Entidades
         public float NotaTercerPeriodo { get; private set; }
         public float NotaCuartoPeriodo { get; private set; }
         public float PromedioNota { get; private set; }
-        public Estudiante Estudiante { get; private set; }
         public Asignatura Asignatura { get; private set; }
-        public int BoletinId { get; set; }
+        public int BoletinId { get; private set; }
+        public int EstudianteId { get; private set; }
 
         public Nota()
         {

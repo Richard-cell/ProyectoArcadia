@@ -13,12 +13,13 @@ namespace Domain.Entidades
         public Acudiente Acudiente { get; private set; }
         public int NumeroDocumentosAdjuntados { get;private set; }
         public string EstadoMatricula { get; private set; }
+        public PensionEscolar PensionEscolar { get; private set; }
 
         public Matricula()
         {
         }
 
-        public Matricula(long codigoMatricula, DateTime fechaMatricula, Estudiante estudiante, Acudiente acudiente, int numeroDocumentosAdjuntados, string estadoMatricula)
+        public Matricula(long codigoMatricula, DateTime fechaMatricula, Estudiante estudiante, Acudiente acudiente, int numeroDocumentosAdjuntados, string estadoMatricula, PensionEscolar pensionEscolar)
         {
             CodigoMatricula = codigoMatricula;
             FechaMatricula = fechaMatricula;
@@ -26,6 +27,7 @@ namespace Domain.Entidades
             Acudiente = acudiente;
             NumeroDocumentosAdjuntados = numeroDocumentosAdjuntados;
             EstadoMatricula = estadoMatricula;
+            PensionEscolar  = pensionEscolar;
         }
     }
 }

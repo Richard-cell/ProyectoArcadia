@@ -9,9 +9,8 @@ namespace Domain.Entidades
     {
         public long CodigoAsignatura { get; private set; }
         public string NombreAsignatura { get; private set; }
-        public int DocenteId { get; private set; }
         public int NotaId { get; private set; }
-
+        public List<DocenteAsignatura> DoceteAsignaturas { get; private set; }
         public Asignatura()
         {
         }
