@@ -19,6 +19,7 @@ namespace Domain.Entidades
         {
             CodigoAsignatura = codigoAsignatura;
             NombreAsignatura = nombreAsignatura;
+            ListaDocenteAsignaturas = new List<DocenteAsignatura>();
         }
 
         public bool IsAlmacenarDocentes(List<DocenteAsignatura> docentes)
