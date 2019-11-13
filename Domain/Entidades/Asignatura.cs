@@ -10,7 +10,7 @@ namespace Domain.Entidades
         public long CodigoAsignatura { get; private set; }
         public string NombreAsignatura { get; private set; }
         public int NotaId { get; private set; }
-        public List<DocenteAsignatura> DoceteAsignaturas { get; private set; }
+        public List<DocenteAsignatura> ListaDocenteAsignaturas { get; private set; }
         public Asignatura()
         {
         }
@@ -19,6 +19,23 @@ namespace Domain.Entidades
         {
             CodigoAsignatura = codigoAsignatura;
             NombreAsignatura = nombreAsignatura;
+        }
+
+        public bool IsAlmacenarDocentes(List<DocenteAsignatura> docentes)
+        {
+            try
+            {
+                foreach (var docente in docentes)
+                {
+                    ListaDocenteAsignaturas.Add(docente);
+                } 
+                return true;
+            }
+            catch (Exception E)
+            {
+                Console.WriteLine(E);
+                return false;
+            }
         }
     }
 }

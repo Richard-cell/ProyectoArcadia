@@ -10,7 +10,7 @@ namespace Domain.Entidades
     {
         public long CodigoCurso { get; private set; }
         public int GradoCurso { get; private set; }
-        public List<DocenteCurso> DocenteCurso { get; set; }
+        public List<DocenteCurso> ListaDocenteCurso { get; set; }
         public List<Estudiante> ListaEstudiantes { get; set; }
 
         public Curso()
@@ -30,7 +30,10 @@ namespace Domain.Entidades
         public bool IsAlmacenarEstudiantes(List<Estudiante> estudiantes) {
             try
             {
-                ListaEstudiantes = estudiantes;
+                foreach (var estudiante in estudiantes)
+                {
+                    ListaEstudiantes.Add(estudiante);
+                }
                 return true;
             }
             catch (Exception E)
@@ -43,7 +46,10 @@ namespace Domain.Entidades
         public bool IsAlmacenarDocentes(List<DocenteCurso> docentes) {
             try
             {
-                DocenteCurso = docentes;
+                foreach (var docente in docentes)
+                {
+                    ListaDocenteCurso.Add(docente);
+                }
                 return true;
             }
             catch (Exception E)

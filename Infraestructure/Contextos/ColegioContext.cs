@@ -30,7 +30,7 @@ namespace Infraestructure.Contextos
         public DbSet<Estudiante> Estudiante{ get; set; }
         public DbSet<Matricula> Matricula { get; set; }
         public DbSet<Nota> Nota { get; set; }
-        public DbSet<Pago> Pago { get; set; }
+        public DbSet<Cuota> Pago { get; set; }
         public DbSet<PensionEscolar> PensionEscolar { get; set; }
     }
 }

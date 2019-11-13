@@ -9,8 +9,8 @@ namespace Domain.Entidades
     {
         public int Edad { get; private set; }
         public int AñosExperiencia { get; private set; }
-        public List<DocenteCurso> DocenteCurso{ get; set; }
-        public List<DocenteAsignatura> DocenteAsignatura { get; set; }
+        public List<DocenteCurso> ListaDocenteCurso{ get; set; }
+        public List<DocenteAsignatura> ListaDocenteAsignaturas { get; set; }
         public Docente()
         {
         }
@@ -25,11 +25,14 @@ namespace Domain.Entidades
             return AñosExperiencia < 2;
         }
 
-        public bool IsAlmacenarCursosAsignados(List<DocenteCurso> curso)
+        public bool IsAlmacenarCursosAsignados(List<DocenteCurso> cursos)
         {
             try
             {
-                DocenteCurso = curso;
+                foreach (var curso in cursos)
+                {
+                    ListaDocenteCurso.Add(curso);
+                }
                 return true;
             }
             catch (Exception E)
@@ -39,11 +42,14 @@ namespace Domain.Entidades
             }
         }
 
-        public bool IsAlmacenarAsignaturasImpartidas(List<DocenteAsignatura> asignatura)
+        public bool IsAlmacenarAsignaturasImpartidas(List<DocenteAsignatura> asignaturas)
         {
             try
             {
-                DocenteAsignatura = asignatura;
+                foreach (var asignatura in asignaturas)
+                {
+                    ListaDocenteAsignaturas.Add(asignatura);
+                }
                 return true;
             }
             catch (Exception E)

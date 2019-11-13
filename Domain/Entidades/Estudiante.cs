@@ -39,11 +39,14 @@ namespace Domain.Entidades
             PensionEscolar = pensionEscolar;
         }
 
-        public bool IsAlmacenarNota(Nota nota)
+        public bool IsAlmacenarNota(List<Nota> notas)
         {
             try
             {
-                ListaNotas.Add(nota);
+                foreach (var nota in notas)
+                {
+                    ListaNotas.Add(nota);
+                }
                 return true;
             }
             catch (Exception E)
