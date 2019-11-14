@@ -37,6 +37,7 @@ namespace Domain.Entidades
             PuntajeSisben = puntajeSisben;
             RepresentanteLegal = representanteLegal;
             PensionEscolar = pensionEscolar;
+            ListaNotas = new List<Nota>();
         }
 
         public bool IsAlmacenarNota(List<Nota> notas)

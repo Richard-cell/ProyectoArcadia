@@ -55,7 +55,7 @@ namespace DomainTest
             listaDocentes.Add(docenteRichard);
 
             asignatura.IsAlmacenarDocentes(listaDocentes);
-            Assert.AreEqual(asignatura.ListaDocenteAsignaturas[0].Docente.PrimerNombre,"Richard");
+            Assert.AreEqual(asignatura.ListaDocenteAsignaturas[0].Docente.PrimerNombre,"Anuar");
         }
     }
 }
