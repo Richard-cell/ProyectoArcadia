@@ -32,7 +32,9 @@ namespace DomainTest
                 3154177696,
                 'M',
                 21,
-                2
+                2,
+                1,
+                "richard.3@gmail.com"
                 );
             Docente docente2 = new Docente(
                 "C.C",
@@ -45,7 +47,9 @@ namespace DomainTest
                 3154177696,
                 'M',
                 21,
-                2
+                2,
+                1,
+                "anuar.sanguino@gmail.com"
                 );
 
             List<DocenteAsignatura> listaDocentes = new List<DocenteAsignatura>();

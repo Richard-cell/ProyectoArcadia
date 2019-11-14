@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Domain.Base
 {
-    public abstract class Persona<T>
+    public abstract class Persona<T>: Entity<int>
     {
         public T Id { get; set; }
         public string TipoDocumento { get; set; }

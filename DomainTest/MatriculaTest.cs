@@ -24,7 +24,9 @@ namespace DomainTest
                 "Gil",
                 "Calle 31#28-17",
                 3154177696,
-                'F'
+                'F',
+                1,
+                "aldanerina@gmail.com"
                 );
 
             pensionEscolar = new PensionEscolar(
@@ -51,6 +53,7 @@ namespace DomainTest
                 32.7f,
                 representanteLegal,
                 'M',
+                "anuarsanguino@gmail.com",
                 pensionEscolar
                 );
         }

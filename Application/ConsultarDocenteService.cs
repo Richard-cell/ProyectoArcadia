@@ -22,7 +22,7 @@ namespace Application
 
 
                 _unitOfWork.Commit();
-                return new ConsultarDocenteResponse { Mensaje = $"el docente {} con documento {request.DocConsultar} imparte la asignatura {}" };
+                return new ConsultarDocenteResponse { Mensaje = $"el docente  con documento {request.DocConsultar} imparte la asignatura " };
             }
             else
             {

@@ -22,7 +22,7 @@ namespace Application
 
 
                 _unitOfWork.Commit();
-                return new CancelarMatriculaResponse { Mensaje = $"Se cancelo la matricula {} con el codigo {request.CodMatricula}" };
+                return new CancelarMatriculaResponse { Mensaje = $"Se cancelo la matricula con el codigo {request.CodMatricula}" };
             }
             else
             {
