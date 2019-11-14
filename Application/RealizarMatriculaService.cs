@@ -17,19 +17,19 @@ namespace Application
 
         public RealizarMatriculaResponse Ejecutar(RealizarMatriculaRequest request)
         {
-            Matricula matricula = _unitOfWork.MatriculaRepository.FindFirstOrDefault(t => t.CodigoMatricula == request.CodigoMatricula);
-            if (matricula == null)
+           // Matricula matricula = _unitOfWork.MatriculaRepository.FindFirstOrDefault(t => t.CodigoMatricula == request.CodigoMatricula);
+            if (request == null)
             {
                 Matricula matriculaNueva = new Matricula();
-                matriculaNueva.CodigoMatricula = request.CodigoMatricula;
+              /*  matriculaNueva.CodigoMatricula = request.CodigoMatricula;
                 matriculaNueva.FechaMatricula = request.FechaMatricula;
                 matriculaNueva.Estudiante = request.Estudiante;
                 matriculaNueva.Acudiente = request.Acudiente;
                 matriculaNueva.NumeroDocumentosAdjuntados = request.NumeroDocumentosAdjuntados;
                 matriculaNueva.ValorMatricula = request.ValorMatricula;
-                matriculaNueva.EstadoMatricula = request.EstadoMatricula;
+                matriculaNueva.EstadoMatricula = request.EstadoMatricula;*/
 
-                _unitOfWork.MatriculaRepository.Add(matriculaNueva);
+                //_unitOfWork.MatriculaRepository.Add(matriculaNueva);
                 _unitOfWork.Commit();
                 return new RealizarMatriculaResponse() { Mensaje = $"Se creó con exito la matricula {request.CodigoMatricula}" };
             }
