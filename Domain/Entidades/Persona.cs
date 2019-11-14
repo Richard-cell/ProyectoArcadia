@@ -16,10 +16,12 @@ namespace Domain.Base
         public string Direccion { get; private set; }
         public long Telefono { get; private set; }
         public char Sexo { get; private set; }
+        public int EstratoSocial { get; private set; }
+        public string CorreoElectronico { get; private set; }
 
         public Persona() {}
 
-        protected Persona(string tipoDocumento,long numeroIdentificacion,string primerNombre, string segundoNombre, string primerApellido, string segundoApellido, string direccion, long telefono, char sexo)
+        protected Persona(string tipoDocumento,long numeroIdentificacion,string primerNombre, string segundoNombre, string primerApellido, string segundoApellido, string direccion, long telefono, char sexo, int estrato, string correoElectronico)
         {
             TipoDocumento = tipoDocumento;
             NumeroIdentificacion = numeroIdentificacion;   
@@ -30,6 +32,8 @@ namespace Domain.Base
             Direccion = direccion;
             Telefono = telefono;
             Sexo = sexo;
+            EstratoSocial = estrato;
+            CorreoElectronico = correoElectronico;
         }
     }
 }
