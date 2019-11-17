@@ -7,7 +7,6 @@ namespace Domain.Entidades
 {
     public class Cuota: Entity<int>
     {
-        public long CodigoCuota { get; private set; }
         public int MesCuota { get; private set; }
         public DateTime FechaPagoCuota { get; private set; }
         public DateTime FechaLimitePagoCuota { get; private set; }
@@ -20,10 +19,10 @@ namespace Domain.Entidades
         {
         }
 
-        public Cuota(long codigoPago, int mesPago, DateTime fechaLimitePago, string estadoCuota, float valorCuota)
+        public Cuota(int codigoCuota, int mesCuota, DateTime fechaLimitePago, string estadoCuota, float valorCuota)
         {
-            CodigoCuota = codigoPago;
-            MesCuota = mesPago;
+            Id = codigoCuota;
+            MesCuota = mesCuota;
             FechaLimitePagoCuota = fechaLimitePago;
             EstadoCuota = estadoCuota;
             ValorCuota = valorCuota;

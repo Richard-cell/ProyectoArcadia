@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Domain.Entidades
 {
-    public class Estudiante: Persona<int>
+    public class Estudiante: Persona<long>
     {
         private static List<string> _listaRH;
         public string LugarNacimiento { get; private set; }
@@ -25,8 +25,9 @@ namespace Domain.Entidades
         {
         }
 
-        public Estudiante(string tipoDocumento, long numeroIdentificacion, string primerNombre, string segundoNombre, string primerApellido, string segundoApellido, string direccion, long telefono, string lugarNacimiento, DateTime fechaNacimiento, string rH, int numeroHermanos, int lugarEntreHermanos, string seguroSocial, int estratoSocial, float puntajeSisben, Acudiente representanteLegal, char sexo, string correoElectronico,PensionEscolar pensionEscolar) :base(tipoDocumento,numeroIdentificacion,primerNombre,segundoNombre,primerApellido,segundoApellido,direccion,telefono, sexo, estratoSocial, correoElectronico)
+        public Estudiante(string tipoDocumento, long numeroIdentificacion, string primerNombre, string segundoNombre, string primerApellido, string segundoApellido, string direccion, long telefono, string lugarNacimiento, DateTime fechaNacimiento, string rH, int numeroHermanos, int lugarEntreHermanos, string seguroSocial, int estratoSocial, float puntajeSisben, Acudiente representanteLegal, char sexo, string correoElectronico,PensionEscolar pensionEscolar) :base(tipoDocumento,primerNombre,segundoNombre,primerApellido,segundoApellido,direccion,telefono, sexo, estratoSocial, correoElectronico)
         {
+            Id = numeroIdentificacion;
             LugarNacimiento = lugarNacimiento;
             FechaNacimiento = fechaNacimiento;
             RH = rH;

@@ -15,37 +15,29 @@ namespace Infraestructure.Contextos
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder) {
-            
+            ConfigurarLlavesPrimarias(modelBuilder);
         }
 
         private void ConfigurarLlavesPrimarias(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<DocenteAsignatura>().HasKey(x => new { x.Docente.NumeroIdentificacion, x.Asignatura.CodigoAsignatura });
-            modelBuilder.Entity<DocenteCurso>().HasKey(x => new { x.Docente.NumeroIdentificacion, x.Curso.CodigoCurso });
+            modelBuilder.Entity<DocenteAsignatura>().HasKey(x => new { x.AsignaturaId, x.DocenteId });
+            modelBuilder.Entity<DocenteCurso>().HasKey(x => new { x.DocenteId, x.CursoId });
 
-            modelBuilder.Entity<Acudiente>().HasKey(x => x.NumeroIdentificacion);
-            modelBuilder.Entity<Acudiente>().Property(x => x.NumeroIdentificacion).ValueGeneratedNever().IsRequired();
+            modelBuilder.Entity<Acudiente>().Property(x => x.Id).ValueGeneratedNever().IsRequired();
 
-            modelBuilder.Entity<Asignatura>().HasKey(x => x.CodigoAsignatura);
-            modelBuilder.Entity<Asignatura>().Property(x => x.CodigoAsignatura).ValueGeneratedNever().IsRequired();
+            modelBuilder.Entity<Asignatura>().Property(x => x.Id).ValueGeneratedNever().IsRequired();
 
-            modelBuilder.Entity<Curso>().HasKey(x => x.CodigoCurso);
-            modelBuilder.Entity<Curso>().Property(x => x.CodigoCurso).ValueGeneratedNever().IsRequired();
+            modelBuilder.Entity<Curso>().Property(x => x.Id).ValueGeneratedNever().IsRequired();
 
-            modelBuilder.Entity<Docente>().HasKey(x => x.NumeroIdentificacion);
-            modelBuilder.Entity<Docente>().Property(x => x.NumeroIdentificacion).ValueGeneratedNever().IsRequired();
+            modelBuilder.Entity<Docente>().Property(x => x.Id).ValueGeneratedNever().IsRequired();
 
-            modelBuilder.Entity<Estudiante>().HasKey(x => x.NumeroIdentificacion);
-            modelBuilder.Entity<Estudiante>().Property(x => x.NumeroIdentificacion).ValueGeneratedNever().IsRequired();
+            modelBuilder.Entity<Estudiante>().Property(x => x.Id).ValueGeneratedNever().IsRequired();
 
-            modelBuilder.Entity<Matricula>().HasKey(x => x.CodigoMatricula);
-            modelBuilder.Entity<Matricula>().Property(x => x.CodigoMatricula).ValueGeneratedNever().IsRequired();
+            modelBuilder.Entity<Matricula>().Property(x => x.Id).ValueGeneratedNever().IsRequired();
 
-            modelBuilder.Entity<Nota>().HasKey(x => x.CodigoNota);
-            modelBuilder.Entity<Nota>().Property(x => x.CodigoNota).ValueGeneratedNever().IsRequired();
+            modelBuilder.Entity<Nota>().Property(x => x.Id).ValueGeneratedNever().IsRequired();
 
-            modelBuilder.Entity<PensionEscolar>().HasKey(x => x.CodigoPensionEscolar);
-            modelBuilder.Entity<PensionEscolar>().Property(x => x.CodigoPensionEscolar).ValueGeneratedNever().IsRequired();
+            modelBuilder.Entity<PensionEscolar>().Property(x => x.Id).ValueGeneratedNever().IsRequired();
         }
 
         public DbSet<Acudiente> Acudiente { get; set; }
@@ -58,7 +50,7 @@ namespace Infraestructure.Contextos
         public DbSet<Estudiante> Estudiante{ get; set; }
         public DbSet<Matricula> Matricula { get; set; }
         public DbSet<Nota> Nota { get; set; }
-        public DbSet<Cuota> Pago { get; set; }
+        public DbSet<Cuota> Cuota { get; set; }
         public DbSet<PensionEscolar> PensionEscolar { get; set; }
     }
 }

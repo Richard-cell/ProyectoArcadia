@@ -5,14 +5,15 @@ using System.Text;
 
 namespace Domain.Entidades
 {
-    public class Acudiente: Persona<int>
+    public class Acudiente: Persona<long>
     {
         private  static List<string> _listaParentezco;
         public string Parentezco { get; private set; }
         public int EstudianteId { get; private set; }
         public int MatriculaId { get; private set; }
         public Acudiente() { }
-        public Acudiente(string parentezco, string tipoDocumento,long numeroIdentificacion,string primerNombre, string segundoNombre, string primerApellido, string segundoApellido, string direccion, long telefono, char sexo, int estratoSocial, string correoElectronico) :base(tipoDocumento, numeroIdentificacion,primerNombre,segundoNombre,primerApellido,segundoApellido,direccion,telefono, sexo, estratoSocial, correoElectronico) {
+        public Acudiente(string parentezco, string tipoDocumento,long numeroIdentificacion,string primerNombre, string segundoNombre, string primerApellido, string segundoApellido, string direccion, long telefono, char sexo, int estratoSocial, string correoElectronico) :base(tipoDocumento,primerNombre,segundoNombre,primerApellido,segundoApellido,direccion,telefono, sexo, estratoSocial, correoElectronico) {
+            Id = numeroIdentificacion;
             Parentezco = parentezco;
             AlmacenarListaDeParientesPermitidos();
         }

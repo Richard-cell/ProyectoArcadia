@@ -8,7 +8,6 @@ namespace Domain.Entidades
     public class Matricula: Entity<int>
     {
         private readonly float _valorMatriculaActual = 120000;
-        public long CodigoMatricula { get; private set; }
         public DateTime FechaMatricula { get; private set; }
         public Estudiante Estudiante { get; private set; }
         public Acudiente Acudiente { get; private set; }
@@ -20,9 +19,9 @@ namespace Domain.Entidades
         {
         }
 
-        public Matricula(long codigoMatricula, DateTime fechaMatricula, Estudiante estudiante, Acudiente acudiente, int numeroDocumentosAdjuntados, string estadoMatricula)
+        public Matricula(int codigoMatricula, DateTime fechaMatricula, Estudiante estudiante, Acudiente acudiente, int numeroDocumentosAdjuntados, string estadoMatricula)
         {
-            CodigoMatricula = codigoMatricula;
+            Id = codigoMatricula;
             FechaMatricula = fechaMatricula;
             Estudiante = estudiante;
             Acudiente = acudiente;

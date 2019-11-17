@@ -7,7 +7,6 @@ namespace Domain.Entidades
 {
     public class Asignatura: Entity<int>
     {
-        public long CodigoAsignatura { get; private set; }
         public string NombreAsignatura { get; private set; }
         public int NotaId { get; private set; }
         public List<DocenteAsignatura> ListaDocenteAsignaturas { get; private set; }
@@ -15,9 +14,9 @@ namespace Domain.Entidades
         {
         }
 
-        public Asignatura(long codigoAsignatura, string nombreAsignatura)
+        public Asignatura(int codigoAsignatura, string nombreAsignatura)
         {
-            CodigoAsignatura = codigoAsignatura;
+            Id = codigoAsignatura;
             NombreAsignatura = nombreAsignatura;
             ListaDocenteAsignaturas = new List<DocenteAsignatura>();
         }

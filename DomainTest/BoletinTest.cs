@@ -14,8 +14,8 @@ namespace DomainTest
         public void Setup()
         {
             listaNotas = new List<Nota>();
-            Nota notaUno = new Nota(1001,4f,3f,2.5f,2.8f,new Asignatura(2001,"Español"));
-            Nota notaDos = new Nota(1002, 5f, 3f, 2.5f, 3.8f, new Asignatura(2001, "Español"));
+            Nota notaUno = new Nota(4f,3f,2.5f,2.8f,new Asignatura(2001,"Español"));
+            Nota notaDos = new Nota(5f, 3f, 2.5f, 3.8f, new Asignatura(2001, "Español"));
             listaNotas.Add(notaUno);
             listaNotas.Add(notaDos);
         }

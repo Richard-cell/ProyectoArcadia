@@ -8,7 +8,6 @@ namespace Domain.Entidades
 {
     public class Curso : Entity<int>
     {
-        public long CodigoCurso { get; private set; }
         public int GradoCurso { get; private set; }
         public List<DocenteCurso> ListaDocenteCurso { get; set; }
         public List<Estudiante> ListaEstudiantes { get; set; }
@@ -17,9 +16,9 @@ namespace Domain.Entidades
         {
         }
 
-        public Curso(long codigoCurso, int gradoCurso)
+        public Curso(int codigoCurso, int gradoCurso)
         {
-            CodigoCurso = codigoCurso;
+            Id = codigoCurso;
             GradoCurso = gradoCurso;
         }
 

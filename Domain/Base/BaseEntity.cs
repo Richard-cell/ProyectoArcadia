@@ -10,6 +10,6 @@ namespace Domain.Base
 
     public abstract class Entity<T> : BaseEntity, IEntity<T>
     {
-        public T id { get; set; }
+        public T Id { get; set; }
     }
 }

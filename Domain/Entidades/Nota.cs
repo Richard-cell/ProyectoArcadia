@@ -7,7 +7,6 @@ namespace Domain.Entidades
 {
     public class Nota : Entity<int>
     {
-        public long CodigoNota { get; private set; }
         public float NotaPrimerPeriodo { get; private set; }
         public float NotaSegundoPeriodo { get; private set; }
         public float NotaTercerPeriodo { get; private set; }
@@ -23,7 +22,7 @@ namespace Domain.Entidades
 
         public Nota(float notaPrimerPeriodo, float notaSegundoPeriodo, float notaTercerPeriodo, float notaCuartoPeriodo, Asignatura asignatura)
         {
-            CodigoNota = asignatura.CodigoAsignatura+EstudianteId;
+            Id = asignatura.Id+EstudianteId;
             NotaPrimerPeriodo = notaPrimerPeriodo;
             NotaSegundoPeriodo = notaSegundoPeriodo;
             NotaTercerPeriodo = notaTercerPeriodo;

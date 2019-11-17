@@ -70,7 +70,7 @@ namespace DomainTest
                 "Activa"
                 );
 
-            Assert.AreEqual(matricula.Estudiante.NumeroIdentificacion, 1003345637);
+            Assert.AreEqual(matricula.Estudiante.Id, 1003345637);
         }
 
         [Test]

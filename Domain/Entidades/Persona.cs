@@ -8,7 +8,6 @@ namespace Domain.Base
     {
         public T Id { get; set; }
         public string TipoDocumento { get; set; }
-        public long NumeroIdentificacion { get; private set; }
         public string PrimerNombre { get; private set; }
         public string SegundoNombre { get; private set; }
         public string PrimerApellido { get; private set; }
@@ -21,10 +20,9 @@ namespace Domain.Base
 
         public Persona() {}
 
-        protected Persona(string tipoDocumento,long numeroIdentificacion,string primerNombre, string segundoNombre, string primerApellido, string segundoApellido, string direccion, long telefono, char sexo, int estrato, string correoElectronico)
+        protected Persona(string tipoDocumento,string primerNombre, string segundoNombre, string primerApellido, string segundoApellido, string direccion, long telefono, char sexo, int estrato, string correoElectronico)
         {
             TipoDocumento = tipoDocumento;
-            NumeroIdentificacion = numeroIdentificacion;   
             PrimerNombre = primerNombre;
             SegundoNombre = segundoNombre;
             PrimerApellido = primerApellido;
