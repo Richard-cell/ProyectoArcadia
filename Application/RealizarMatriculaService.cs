@@ -17,7 +17,7 @@ namespace Application
 
         public RealizarMatriculaResponse Ejecutar(RealizarMatriculaRequest request)
         {
-           // Matricula matricula = _unitOfWork.MatriculaRepository.FindFirstOrDefault(t => t.CodigoMatricula == request.CodigoMatricula);
+           Matricula matricula = _unitOfWork.MatriculaRepository.FindFirstOrDefault(t => t.Id == request.CodigoMatricula);
             if (request == null)
             {
                 Matricula matriculaNueva = new Matricula();
