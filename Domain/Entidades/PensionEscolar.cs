@@ -7,7 +7,7 @@ namespace Domain.Entidades
 {
     public class PensionEscolar : Entity<int>
     {
-
+        private readonly float _valorPension;
         public long CodigoPensionEscolar { get; private set; }
         public DateTime FechaInicioPension { get; set; }
         public float ValorPension { get; private set; }
@@ -22,7 +22,7 @@ namespace Domain.Entidades
         {
             CodigoPensionEscolar = codigoPensionEscolar;
             FechaInicioPension = fechaInicioPension;
-            ValorPension = 60000;
+            ValorPension = _valorPension;
             IsAlmacenarCuotas();
         }
 

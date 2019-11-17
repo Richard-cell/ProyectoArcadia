@@ -62,5 +62,17 @@ namespace Domain.Entidades
                 return false;
             }
         }
+
+        public static bool IsValidarValorCuota(float valorCuota)
+        {
+            if (valorCuota <= 0 || valorCuota>=80000)
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+        }
     }
 }

@@ -7,6 +7,7 @@ namespace Domain.Entidades
 {
     public class Estudiante: Persona<int>
     {
+        private static List<string> _listaRH;
         public string LugarNacimiento { get; private set; }
         public DateTime FechaNacimiento { get; private set; }
         public string RH { get; private set; }
@@ -36,6 +37,7 @@ namespace Domain.Entidades
             RepresentanteLegal = representanteLegal;
             PensionEscolar = pensionEscolar;
             ListaNotas = new List<Nota>();
+            AlmacenarRHValidos();
         }
 
         public bool IsAlmacenarNota(List<Nota> notas)
@@ -53,6 +55,45 @@ namespace Domain.Entidades
                 Console.WriteLine(E);
                 return false;
             }
+        }
+
+        public static bool IsValidarRH(string RH)
+        {
+            bool RHvalido = false;
+            foreach (var tipoSangre in _listaRH)
+            {
+                if (tipoSangre.Equals(RH))
+                {
+                    RHvalido = true;
+                    break;
+                }
+            }
+            return RHvalido;
+        }
+
+        public static bool IsValidarPuntajeSisben(float puntajeSisben)
+        {
+            if (puntajeSisben<0 || puntajeSisben>60)
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+        }
+
+        public void AlmacenarRHValidos()
+        {
+            _listaRH = new List<string>();
+            _listaRH.Add("O+");
+            _listaRH.Add("O-");
+            _listaRH.Add("A+");
+            _listaRH.Add("A-");
+            _listaRH.Add("B+");
+            _listaRH.Add("B-");
+            _listaRH.Add("AB+");
+            _listaRH.Add("AB-");
         }
     }
 }

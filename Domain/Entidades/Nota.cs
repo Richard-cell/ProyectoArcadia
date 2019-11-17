@@ -21,9 +21,9 @@ namespace Domain.Entidades
         {
         }
 
-        public Nota(long codigoNota, float notaPrimerPeriodo, float notaSegundoPeriodo, float notaTercerPeriodo, float notaCuartoPeriodo, Asignatura asignatura)
+        public Nota(float notaPrimerPeriodo, float notaSegundoPeriodo, float notaTercerPeriodo, float notaCuartoPeriodo, Asignatura asignatura)
         {
-            CodigoNota = codigoNota;
+            CodigoNota = asignatura.CodigoAsignatura+EstudianteId;
             NotaPrimerPeriodo = notaPrimerPeriodo;
             NotaSegundoPeriodo = notaSegundoPeriodo;
             NotaTercerPeriodo = notaTercerPeriodo;

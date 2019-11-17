@@ -58,5 +58,17 @@ namespace Domain.Entidades
                 return false;
             }
         }
+
+        public static bool IsValidarGradoCurso(int grado)
+        {
+            if (grado<=0 || grado>=12 )
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+        }
     }
 }

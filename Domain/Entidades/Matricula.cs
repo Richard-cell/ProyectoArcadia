@@ -7,7 +7,7 @@ namespace Domain.Entidades
 {
     public class Matricula: Entity<int>
     {
-        private readonly float _valorMatriculaActual = 620000;
+        private readonly float _valorMatriculaActual = 120000;
         public long CodigoMatricula { get; private set; }
         public DateTime FechaMatricula { get; private set; }
         public Estudiante Estudiante { get; private set; }

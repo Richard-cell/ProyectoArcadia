@@ -21,8 +21,8 @@ namespace Domain.Entidades
             AñosExperiencia = añosExperiencia;
         }
 
-        public bool IsValidarAñosExperiencia() {
-            return AñosExperiencia < 2;
+        public static bool IsValidarAñosExperiencia(int añosExperiencia) {
+            return añosExperiencia < 2;
         }
 
         public bool IsAlmacenarCursosAsignados(List<DocenteCurso> cursos)
