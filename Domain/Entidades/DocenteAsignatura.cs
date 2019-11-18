@@ -1,10 +1,11 @@
-﻿using System;
+﻿using Domain.Base;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace Domain.Entidades
 {
-    public class DocenteAsignatura
+    public class DocenteAsignatura: BaseEntity
     {
         public int DocenteId { get; private set; }
         public int AsignaturaId { get; private set; }

@@ -17,6 +17,7 @@ namespace Domain.Contracts
         IMatriculaRepository MatriculaRepository { get; }
         INotaRepository NotaRepository { get; }
         IPensionEscolarRepository PensionEscolarRepository { get; }
+        IDocenteAsignaturaRepository DocenteAsignaturaRepository { get; }
         int Commit();
     }
 }

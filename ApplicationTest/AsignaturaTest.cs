@@ -28,5 +28,11 @@ namespace ApplicationTest
             var response = service.Ejecutar(request);
             Assert.AreEqual("Se registro correctamente la asignatura Español", response.Mensaje);
         }
+
+        [Test]
+        public void RegistroExitosoDocentesAsignatura()
+        {
+
+        }
     }
 }

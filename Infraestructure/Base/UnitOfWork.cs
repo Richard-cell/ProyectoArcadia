@@ -20,6 +20,7 @@ namespace Infraestructure.Base
         private IMatriculaRepository _matriculaRepository;
         private INotaRepository _notaRepository;
         private IPensionEscolarRepository _pensionEscolarRepository;
+        private IDocenteAsignaturaRepository _docenteAsignaturaRepository;
 
         public UnitOfWork(IDbContext context)
         {
@@ -27,23 +28,15 @@ namespace Infraestructure.Base
         }
 
         public IAcudienteRepository AcudienteRepository { get { return _acudienteRepository ?? (_acudienteRepository = new AcudienteRepository(_dbContext)); } }
-
         public IAsignaturaRepository AsignaturaRepository { get { return _asignaturaRepository ?? (_asignaturaRepository = new AsignaturaRepository(_dbContext)); } }
-
         public IBoletinRepository BoletinRepository { get { return _boletinRepository ?? (_boletinRepository = new BoletinRepository(_dbContext)); } }
-
         public ICursoRepository CursoRepository { get { return _cursoRepository ?? (_cursoRepository = new CursoRepository(_dbContext)); } }
-
         public IDocenteRepository DocenteRepository { get { return _docenteRepository ?? (_docenteRepository = new DocenteRepository(_dbContext)); } }
-
         public IEstudianteRepository EstudianteRepository { get { return _estudianteRepository ?? (_estudianteRepository = new EstudianteRepository(_dbContext)); } }
-
         public IMatriculaRepository MatriculaRepository { get { return _matriculaRepository ?? (_matriculaRepository = new MatriculaRepository(_dbContext)); } }
-
         public INotaRepository NotaRepository { get { return _notaRepository ?? (_notaRepository = new NotaRepository(_dbContext)); } }
-
         public IPensionEscolarRepository PensionEscolarRepository { get { return _pensionEscolarRepository ?? (_pensionEscolarRepository = new PensionEscolarRepository(_dbContext)); } }
-
+        public IDocenteAsignaturaRepository DocenteAsignaturaRepository { get { return _docenteAsignaturaRepository ?? (_docenteAsignaturaRepository = new DocenteAsignaturaRepository(_dbContext)); } }
         public int Commit()
         {
             return _dbContext.SaveChanges();
