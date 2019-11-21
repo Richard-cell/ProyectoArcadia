@@ -33,10 +33,10 @@ namespace Infraestructure.Migrations
                     b.Property<int>("EstratoSocial")
                         .HasColumnType("int");
 
-                    b.Property<int>("EstudianteId")
-                        .HasColumnType("int");
+                    b.Property<long>("EstudianteId")
+                        .HasColumnType("bigint");
 
-                    b.Property<int>("MatriculaId")
+                    b.Property<int?>("MatriculaId")
                         .HasColumnType("int");
 
                     b.Property<string>("Parentezco")
@@ -66,8 +66,12 @@ namespace Infraestructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("MatriculaId")
+                    b.HasIndex("EstudianteId")
                         .IsUnique();
+
+                    b.HasIndex("MatriculaId")
+                        .IsUnique()
+                        .HasFilter("[MatriculaId] IS NOT NULL");
 
                     b.ToTable("Acudiente");
                 });
@@ -80,13 +84,7 @@ namespace Infraestructure.Migrations
                     b.Property<string>("NombreAsignatura")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("NotaId")
-                        .HasColumnType("int");
-
                     b.HasKey("Id");
-
-                    b.HasIndex("NotaId")
-                        .IsUnique();
 
                     b.ToTable("Asignatura");
                 });
@@ -203,35 +201,27 @@ namespace Infraestructure.Migrations
                     b.Property<int>("AsignaturaId")
                         .HasColumnType("int");
 
-                    b.Property<int>("DocenteId")
-                        .HasColumnType("int");
-
-                    b.Property<long?>("DocenteId1")
+                    b.Property<long>("DocenteId")
                         .HasColumnType("bigint");
 
                     b.HasKey("AsignaturaId", "DocenteId");
 
-                    b.HasIndex("DocenteId1");
+                    b.HasIndex("DocenteId");
 
                     b.ToTable("DocenteAsignatura");
                 });
 
             modelBuilder.Entity("Domain.Entidades.DocenteCurso", b =>
                 {
-                    b.Property<int>("DocenteId")
-                        .HasColumnType("int");
-
                     b.Property<int>("CursoId")
                         .HasColumnType("int");
 
-                    b.Property<long?>("DocenteId1")
+                    b.Property<long>("DocenteId")
                         .HasColumnType("bigint");
 
-                    b.HasKey("DocenteId", "CursoId");
+                    b.HasKey("CursoId", "DocenteId");
 
-                    b.HasIndex("CursoId");
-
-                    b.HasIndex("DocenteId1");
+                    b.HasIndex("DocenteId");
 
                     b.ToTable("DocenteCurso");
                 });
@@ -244,7 +234,7 @@ namespace Infraestructure.Migrations
                     b.Property<string>("CorreoElectronico")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("CursoId")
+                    b.Property<int?>("CursoId")
                         .HasColumnType("int");
 
                     b.Property<string>("Direccion")
@@ -283,9 +273,6 @@ namespace Infraestructure.Migrations
                     b.Property<string>("RH")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<long?>("RepresentanteLegalId")
-                        .HasColumnType("bigint");
-
                     b.Property<string>("SegundoApellido")
                         .HasColumnType("nvarchar(max)");
 
@@ -313,8 +300,6 @@ namespace Infraestructure.Migrations
                         .IsUnique();
 
                     b.HasIndex("PensionEscolarId");
-
-                    b.HasIndex("RepresentanteLegalId");
 
                     b.ToTable("Estudiante");
                 });
@@ -346,7 +331,10 @@ namespace Infraestructure.Migrations
                     b.Property<int>("Id")
                         .HasColumnType("int");
 
-                    b.Property<int>("BoletinId")
+                    b.Property<int>("AsignaturaId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("BoletinId")
                         .HasColumnType("int");
 
                     b.Property<int>("EstudianteId")
@@ -371,6 +359,8 @@ namespace Infraestructure.Migrations
                         .HasColumnType("real");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("AsignaturaId");
 
                     b.HasIndex("BoletinId");
 
@@ -400,20 +390,15 @@ namespace Infraestructure.Migrations
 
             modelBuilder.Entity("Domain.Entidades.Acudiente", b =>
                 {
+                    b.HasOne("Domain.Entidades.Estudiante", null)
+                        .WithOne("RepresentanteLegal")
+                        .HasForeignKey("Domain.Entidades.Acudiente", "EstudianteId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("Domain.Entidades.Matricula", null)
                         .WithOne("Acudiente")
-                        .HasForeignKey("Domain.Entidades.Acudiente", "MatriculaId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("Domain.Entidades.Asignatura", b =>
-                {
-                    b.HasOne("Domain.Entidades.Nota", null)
-                        .WithOne("Asignatura")
-                        .HasForeignKey("Domain.Entidades.Asignatura", "NotaId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("Domain.Entidades.Acudiente", "MatriculaId");
                 });
 
             modelBuilder.Entity("Domain.Entidades.Cuota", b =>
@@ -435,7 +420,9 @@ namespace Infraestructure.Migrations
 
                     b.HasOne("Domain.Entidades.Docente", "Docente")
                         .WithMany("ListaDocenteAsignaturas")
-                        .HasForeignKey("DocenteId1");
+                        .HasForeignKey("DocenteId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("Domain.Entidades.DocenteCurso", b =>
@@ -448,16 +435,16 @@ namespace Infraestructure.Migrations
 
                     b.HasOne("Domain.Entidades.Docente", "Docente")
                         .WithMany("ListaDocenteCurso")
-                        .HasForeignKey("DocenteId1");
+                        .HasForeignKey("DocenteId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("Domain.Entidades.Estudiante", b =>
                 {
                     b.HasOne("Domain.Entidades.Curso", null)
                         .WithMany("ListaEstudiantes")
-                        .HasForeignKey("CursoId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("CursoId");
 
                     b.HasOne("Domain.Entidades.Matricula", null)
                         .WithOne("Estudiante")
@@ -468,19 +455,19 @@ namespace Infraestructure.Migrations
                     b.HasOne("Domain.Entidades.PensionEscolar", "PensionEscolar")
                         .WithMany()
                         .HasForeignKey("PensionEscolarId");
-
-                    b.HasOne("Domain.Entidades.Acudiente", "RepresentanteLegal")
-                        .WithMany()
-                        .HasForeignKey("RepresentanteLegalId");
                 });
 
             modelBuilder.Entity("Domain.Entidades.Nota", b =>
                 {
-                    b.HasOne("Domain.Entidades.Boletin", null)
+                    b.HasOne("Domain.Entidades.Asignatura", null)
                         .WithMany("ListaNotas")
-                        .HasForeignKey("BoletinId")
+                        .HasForeignKey("AsignaturaId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.HasOne("Domain.Entidades.Boletin", null)
+                        .WithMany("ListaNotas")
+                        .HasForeignKey("BoletinId");
 
                     b.HasOne("Domain.Entidades.Estudiante", null)
                         .WithMany("ListaNotas")

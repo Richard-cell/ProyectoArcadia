@@ -16,7 +16,7 @@ namespace Domain.Entidades
         public string SeguroSocial { get; private set; }
         public float PuntajeSisben { get; private set; }
         public int MatriculaId { get; private set; }
-        public int CursoId { get; private set; }
+        public int? CursoId { get; private set; }
         public Acudiente RepresentanteLegal { get; private set; }
         public PensionEscolar PensionEscolar { get; private set; }
         public List<Nota> ListaNotas { get; set; }

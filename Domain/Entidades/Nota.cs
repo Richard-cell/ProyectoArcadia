@@ -12,22 +12,21 @@ namespace Domain.Entidades
         public float NotaTercerPeriodo { get; private set; }
         public float NotaCuartoPeriodo { get; private set; }
         public float PromedioNota { get; private set; }
-        public Asignatura Asignatura { get; private set; }
-        public int BoletinId { get; private set; }
+        public int AsignaturaId { get; private set; }
+        public int? BoletinId { get; private set; }
         public int EstudianteId { get; private set; }
 
         public Nota()
         {
         }
 
-        public Nota(float notaPrimerPeriodo, float notaSegundoPeriodo, float notaTercerPeriodo, float notaCuartoPeriodo, Asignatura asignatura)
+        public Nota(float notaPrimerPeriodo, float notaSegundoPeriodo, float notaTercerPeriodo, float notaCuartoPeriodo)
         {
-            Id = asignatura.Id+EstudianteId;
+            Id = AsignaturaId + EstudianteId;
             NotaPrimerPeriodo = notaPrimerPeriodo;
             NotaSegundoPeriodo = notaSegundoPeriodo;
             NotaTercerPeriodo = notaTercerPeriodo;
             NotaCuartoPeriodo = notaCuartoPeriodo;
-            Asignatura = asignatura;
             CalcularPromedio();
         }
 

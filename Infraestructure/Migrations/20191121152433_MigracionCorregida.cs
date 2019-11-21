@@ -3,10 +3,22 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Infraestructure.Migrations
 {
-    public partial class MigracionInicial : Migration
+    public partial class MigracionCorregida : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.CreateTable(
+                name: "Asignatura",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false),
+                    NombreAsignatura = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Asignatura", x => x.Id);
+                });
+
             migrationBuilder.CreateTable(
                 name: "Boletin",
                 columns: table => new
@@ -84,16 +96,39 @@ namespace Infraestructure.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "DocenteCurso",
+                name: "DocenteAsignatura",
                 columns: table => new
                 {
-                    DocenteId = table.Column<int>(nullable: false),
-                    CursoId = table.Column<int>(nullable: false),
-                    DocenteId1 = table.Column<long>(nullable: true)
+                    DocenteId = table.Column<long>(nullable: false),
+                    AsignaturaId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_DocenteCurso", x => new { x.DocenteId, x.CursoId });
+                    table.PrimaryKey("PK_DocenteAsignatura", x => new { x.AsignaturaId, x.DocenteId });
+                    table.ForeignKey(
+                        name: "FK_DocenteAsignatura_Asignatura_AsignaturaId",
+                        column: x => x.AsignaturaId,
+                        principalTable: "Asignatura",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_DocenteAsignatura_Docente_DocenteId",
+                        column: x => x.DocenteId,
+                        principalTable: "Docente",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "DocenteCurso",
+                columns: table => new
+                {
+                    DocenteId = table.Column<long>(nullable: false),
+                    CursoId = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_DocenteCurso", x => new { x.CursoId, x.DocenteId });
                     table.ForeignKey(
                         name: "FK_DocenteCurso_Curso_CursoId",
                         column: x => x.CursoId,
@@ -101,39 +136,9 @@ namespace Infraestructure.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_DocenteCurso_Docente_DocenteId1",
-                        column: x => x.DocenteId1,
+                        name: "FK_DocenteCurso_Docente_DocenteId",
+                        column: x => x.DocenteId,
                         principalTable: "Docente",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Acudiente",
-                columns: table => new
-                {
-                    Id = table.Column<long>(nullable: false),
-                    TipoDocumento = table.Column<string>(nullable: true),
-                    PrimerNombre = table.Column<string>(nullable: true),
-                    SegundoNombre = table.Column<string>(nullable: true),
-                    PrimerApellido = table.Column<string>(nullable: true),
-                    SegundoApellido = table.Column<string>(nullable: true),
-                    Direccion = table.Column<string>(nullable: true),
-                    Telefono = table.Column<long>(nullable: false),
-                    Sexo = table.Column<string>(nullable: false),
-                    EstratoSocial = table.Column<int>(nullable: false),
-                    CorreoElectronico = table.Column<string>(nullable: true),
-                    Parentezco = table.Column<string>(nullable: true),
-                    EstudianteId = table.Column<int>(nullable: false),
-                    MatriculaId = table.Column<int>(nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Acudiente", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Acudiente_Matricula_MatriculaId",
-                        column: x => x.MatriculaId,
-                        principalTable: "Matricula",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -186,8 +191,7 @@ namespace Infraestructure.Migrations
                     SeguroSocial = table.Column<string>(nullable: true),
                     PuntajeSisben = table.Column<float>(nullable: false),
                     MatriculaId = table.Column<int>(nullable: false),
-                    CursoId = table.Column<int>(nullable: false),
-                    RepresentanteLegalId = table.Column<long>(nullable: true),
+                    CursoId = table.Column<int>(nullable: true),
                     PensionEscolarId = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
@@ -198,7 +202,7 @@ namespace Infraestructure.Migrations
                         column: x => x.CursoId,
                         principalTable: "Curso",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_Estudiante_Matricula_MatriculaId",
                         column: x => x.MatriculaId,
@@ -211,10 +215,40 @@ namespace Infraestructure.Migrations
                         principalTable: "PensionEscolar",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Acudiente",
+                columns: table => new
+                {
+                    Id = table.Column<long>(nullable: false),
+                    TipoDocumento = table.Column<string>(nullable: true),
+                    PrimerNombre = table.Column<string>(nullable: true),
+                    SegundoNombre = table.Column<string>(nullable: true),
+                    PrimerApellido = table.Column<string>(nullable: true),
+                    SegundoApellido = table.Column<string>(nullable: true),
+                    Direccion = table.Column<string>(nullable: true),
+                    Telefono = table.Column<long>(nullable: false),
+                    Sexo = table.Column<string>(nullable: false),
+                    EstratoSocial = table.Column<int>(nullable: false),
+                    CorreoElectronico = table.Column<string>(nullable: true),
+                    Parentezco = table.Column<string>(nullable: true),
+                    EstudianteId = table.Column<long>(nullable: false),
+                    MatriculaId = table.Column<int>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Acudiente", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Estudiante_Acudiente_RepresentanteLegalId",
-                        column: x => x.RepresentanteLegalId,
-                        principalTable: "Acudiente",
+                        name: "FK_Acudiente_Estudiante_EstudianteId",
+                        column: x => x.EstudianteId,
+                        principalTable: "Estudiante",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Acudiente_Matricula_MatriculaId",
+                        column: x => x.MatriculaId,
+                        principalTable: "Matricula",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
@@ -229,7 +263,8 @@ namespace Infraestructure.Migrations
                     NotaTercerPeriodo = table.Column<float>(nullable: false),
                     NotaCuartoPeriodo = table.Column<float>(nullable: false),
                     PromedioNota = table.Column<float>(nullable: false),
-                    BoletinId = table.Column<int>(nullable: false),
+                    AsignaturaId = table.Column<int>(nullable: false),
+                    BoletinId = table.Column<int>(nullable: true),
                     EstudianteId = table.Column<int>(nullable: false),
                     EstudianteId1 = table.Column<long>(nullable: true)
                 },
@@ -237,11 +272,17 @@ namespace Infraestructure.Migrations
                 {
                     table.PrimaryKey("PK_Nota", x => x.Id);
                     table.ForeignKey(
+                        name: "FK_Nota_Asignatura_AsignaturaId",
+                        column: x => x.AsignaturaId,
+                        principalTable: "Asignatura",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
                         name: "FK_Nota_Boletin_BoletinId",
                         column: x => x.BoletinId,
                         principalTable: "Boletin",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_Nota_Estudiante_EstudianteId1",
                         column: x => x.EstudianteId1,
@@ -250,61 +291,18 @@ namespace Infraestructure.Migrations
                         onDelete: ReferentialAction.Restrict);
                 });
 
-            migrationBuilder.CreateTable(
-                name: "Asignatura",
-                columns: table => new
-                {
-                    Id = table.Column<int>(nullable: false),
-                    NombreAsignatura = table.Column<string>(nullable: true),
-                    NotaId = table.Column<int>(nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Asignatura", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Asignatura_Nota_NotaId",
-                        column: x => x.NotaId,
-                        principalTable: "Nota",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "DocenteAsignatura",
-                columns: table => new
-                {
-                    DocenteId = table.Column<int>(nullable: false),
-                    AsignaturaId = table.Column<int>(nullable: false),
-                    DocenteId1 = table.Column<long>(nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_DocenteAsignatura", x => new { x.AsignaturaId, x.DocenteId });
-                    table.ForeignKey(
-                        name: "FK_DocenteAsignatura_Asignatura_AsignaturaId",
-                        column: x => x.AsignaturaId,
-                        principalTable: "Asignatura",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_DocenteAsignatura_Docente_DocenteId1",
-                        column: x => x.DocenteId1,
-                        principalTable: "Docente",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                });
+            migrationBuilder.CreateIndex(
+                name: "IX_Acudiente_EstudianteId",
+                table: "Acudiente",
+                column: "EstudianteId",
+                unique: true);
 
             migrationBuilder.CreateIndex(
                 name: "IX_Acudiente_MatriculaId",
                 table: "Acudiente",
                 column: "MatriculaId",
-                unique: true);
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Asignatura_NotaId",
-                table: "Asignatura",
-                column: "NotaId",
-                unique: true);
+                unique: true,
+                filter: "[MatriculaId] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Cuota_PensionEscolarId",
@@ -312,19 +310,14 @@ namespace Infraestructure.Migrations
                 column: "PensionEscolarId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_DocenteAsignatura_DocenteId1",
+                name: "IX_DocenteAsignatura_DocenteId",
                 table: "DocenteAsignatura",
-                column: "DocenteId1");
+                column: "DocenteId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_DocenteCurso_CursoId",
+                name: "IX_DocenteCurso_DocenteId",
                 table: "DocenteCurso",
-                column: "CursoId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_DocenteCurso_DocenteId1",
-                table: "DocenteCurso",
-                column: "DocenteId1");
+                column: "DocenteId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Estudiante_CursoId",
@@ -343,9 +336,9 @@ namespace Infraestructure.Migrations
                 column: "PensionEscolarId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Estudiante_RepresentanteLegalId",
-                table: "Estudiante",
-                column: "RepresentanteLegalId");
+                name: "IX_Nota_AsignaturaId",
+                table: "Nota",
+                column: "AsignaturaId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Nota_BoletinId",
@@ -361,6 +354,9 @@ namespace Infraestructure.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
+                name: "Acudiente");
+
+            migrationBuilder.DropTable(
                 name: "Cuota");
 
             migrationBuilder.DropTable(
@@ -370,13 +366,13 @@ namespace Infraestructure.Migrations
                 name: "DocenteCurso");
 
             migrationBuilder.DropTable(
-                name: "Asignatura");
+                name: "Nota");
 
             migrationBuilder.DropTable(
                 name: "Docente");
 
             migrationBuilder.DropTable(
-                name: "Nota");
+                name: "Asignatura");
 
             migrationBuilder.DropTable(
                 name: "Boletin");
@@ -388,13 +384,10 @@ namespace Infraestructure.Migrations
                 name: "Curso");
 
             migrationBuilder.DropTable(
-                name: "PensionEscolar");
-
-            migrationBuilder.DropTable(
-                name: "Acudiente");
-
-            migrationBuilder.DropTable(
                 name: "Matricula");
+
+            migrationBuilder.DropTable(
+                name: "PensionEscolar");
         }
     }
 }

@@ -17,44 +17,51 @@ namespace Application
 
         public AsignarDocenteAsignaturaResponse Ejecutar(AsignarDocenteAsignaturaRequest request)
         {
-            List<DocenteAsignatura> ListaDocenteAsignaturas;
-            Docente docente = _unitOfWork.DocenteRepository.FindFirstOrDefault(x => x.Id==request.NumeroIdentificacion);
-            if (docente!=null)
-            {
-                ListaDocenteAsignaturas = new List<DocenteAsignatura>();
-                foreach (var asignaturas in request.ListaCodigosAsignaturas)
-                {
-                    Asignatura asignatura = _unitOfWork.AsignaturaRepository.FindFirstOrDefault(x => x.Id == asignaturas);
-                    if (asignatura != null)
-                    {
-                        DocenteAsignatura docenteAsignatura = new DocenteAsignatura(docente, asignatura);
-                        ListaDocenteAsignaturas.Add(docenteAsignatura);
-                    }
-                    else {
-                        return new AsignarDocenteAsignaturaResponse { Mensaje = $"La Asignatura {asignaturas} No ha sido registrada" };
-                    }
+            Docente docente = BuscarDocente(request.NumeroIdentificacion);
+            Asignatura asignatura = BuscarAsignatura(request.CodigoAsignatura);
 
-                }
-                docente.IsAlmacenarAsignaturasImpartidas(ListaDocenteAsignaturas);
-                _unitOfWork.DocenteRepository.Edit(docente);
-                _unitOfWork.Commit();
-                AsignarDocenteAsignaturaResponse response = null;
-                for (int i = 0; i < ListaDocenteAsignaturas.Count; i++)
-                {
-                   response = new AsignarDocenteAsignaturaResponse { Mensaje = $"Las asignaturas, se han asignado al docente {docente.PrimerNombre} {docente.PrimerApellido}" };
-                }
-                return response;
-            }
-            else
+            if (docente != null && asignatura != null)
             {
-                return new AsignarDocenteAsignaturaResponse { Mensaje = "El docente no se encuentra registrado" };
+                if (ValidarRegistroExistente(request.NumeroIdentificacion, request.CodigoAsignatura) == null)
+                {
+                    DocenteAsignatura docenteAsignatura = new DocenteAsignatura(docente,asignatura );
+                    docente.IsAlmacenarAsignaturasImpartidas(docenteAsignatura);
+                    _unitOfWork.DocenteRepository.Edit(docente);
+                    _unitOfWork.Commit();
+                    //_unitOfWork.DocenteAsignaturaRepository.Add(docenteAsignatura);
+                    //_unitOfWork.Commit();
+                    return new AsignarDocenteAsignaturaResponse { Mensaje = $"Se le asigno al docente {docente.PrimerNombre} correctamente la asignatura de {asignatura.NombreAsignatura}" };
+                }
+                else
+                {
+                    return new AsignarDocenteAsignaturaResponse { Mensaje = $"El docente {docente.PrimerNombre} ya imparte la asignatura de {asignatura.NombreAsignatura}" };
+                }
             }
+            else {
+                return new AsignarDocenteAsignaturaResponse { Mensaje = $"los datos no se encuentran registrados verifique" };
+            }
+            
+        }
+
+        public Docente BuscarDocente(long numeroIdentificacion)
+        {
+            return _unitOfWork.DocenteRepository.FindFirstOrDefault(x=> x.Id == numeroIdentificacion);
+        }
+
+        public Asignatura BuscarAsignatura(int codigoAsignatura)
+        {
+            return _unitOfWork.AsignaturaRepository.FindFirstOrDefault(x=>x.Id==codigoAsignatura);
+        }
+
+        public DocenteAsignatura ValidarRegistroExistente(long numeroIdentificacion, int codigoAsignatura)
+        {
+            return _unitOfWork.DocenteAsignaturaRepository.FindFirstOrDefault(x=>x.DocenteId == numeroIdentificacion && x.AsignaturaId==codigoAsignatura);
         }
         
     }
     public class AsignarDocenteAsignaturaRequest
     {
-        public List<int> ListaCodigosAsignaturas { get; set; }
+        public int CodigoAsignatura { get; set; }
         public long NumeroIdentificacion { get; set; }
     }
 

@@ -9,12 +9,17 @@ namespace ApplicationTest
 {
     public class Tests
     {
-        ColegioContext _context;
+        ColegioContext _contextInMemory;
+        ColegioContext _contextInBD;
         [SetUp]
         public void Setup()
         {
+            var optionsSqlServer = new DbContextOptionsBuilder<ColegioContext>()
+             .UseSqlServer("Server = (localdb)\\MSSQLLocalDB; Database = ColegioDB; Trusted_Connection = True; MultipleActiveResultSets = true")
+             .Options;
             var optionsInMemory = new DbContextOptionsBuilder<ColegioContext>().UseInMemoryDatabase("ColegioDBT").Options;
-            _context = new ColegioContext(optionsInMemory);
+            _contextInMemory = new ColegioContext(optionsInMemory);
+            _contextInBD = new ColegioContext(optionsSqlServer);
         }
 
         [Test]
@@ -25,7 +30,7 @@ namespace ApplicationTest
                 CodigoAsignatura = 1001,
                 NombreAsignatura = "Español"
             };
-            RegistrarAsignaturaService service = new RegistrarAsignaturaService(new UnitOfWork(_context));
+            RegistrarAsignaturaService service = new RegistrarAsignaturaService(new UnitOfWork(_contextInMemory));
             var response = service.Ejecutar(request);
             Assert.AreEqual("Se registro correctamente la asignatura Español", response.Mensaje);
         }
@@ -33,21 +38,13 @@ namespace ApplicationTest
         [Test]
         public void RegistroExitosoDocentesAsignatura()
         {
-            RegistrarAsignaturaRequest request = new RegistrarAsignaturaRequest
+            RegistrarAsignaturaRequest requestRegistrarAsignatura = new RegistrarAsignaturaRequest
             {
                 CodigoAsignatura = 1001,
                 NombreAsignatura = "Español"
             };
-            RegistrarAsignaturaService service = new RegistrarAsignaturaService(new UnitOfWork(_context));
-            service.Ejecutar(request);
-
-            RegistrarAsignaturaRequest requestDos = new RegistrarAsignaturaRequest
-            {
-                CodigoAsignatura = 1002,
-                NombreAsignatura = "Ingles"
-            };
-            RegistrarAsignaturaService serviceDos = new RegistrarAsignaturaService(new UnitOfWork(_context));
-            service.Ejecutar(requestDos);
+            RegistrarAsignaturaService service = new RegistrarAsignaturaService(new UnitOfWork(_contextInBD));
+            service.Ejecutar(requestRegistrarAsignatura);
 
             RegistrarDocenteRequest requestRegistrarDocente = new RegistrarDocenteRequest
             {
@@ -65,23 +62,17 @@ namespace ApplicationTest
                 Estrato = 1,
                 Email = "ssss"
             };
-            RegistrarDocenteService serviceDocente = new RegistrarDocenteService(new UnitOfWork(_context));
+            RegistrarDocenteService serviceDocente = new RegistrarDocenteService(new UnitOfWork(_contextInBD));
             serviceDocente.Ejecutar(requestRegistrarDocente);
-
-
-
-            List<int> listaAsignaturas = new List<int>();
-            listaAsignaturas.Add(1001);
-            listaAsignaturas.Add(1002);
 
             AsignarDocenteAsignaturaRequest requestAsignar = new AsignarDocenteAsignaturaRequest
             {
-                ListaCodigosAsignaturas = listaAsignaturas,
+                CodigoAsignatura = 1001,
                 NumeroIdentificacion = 1065842658
             };
-            AsignarDocenteAsignaturaService serviceAsignarDocente = new AsignarDocenteAsignaturaService(new UnitOfWork(_context));
+            AsignarDocenteAsignaturaService serviceAsignarDocente = new AsignarDocenteAsignaturaService(new UnitOfWork(_contextInBD));
             var response = serviceAsignarDocente.Ejecutar(requestAsignar);
-            Assert.AreEqual("Las asignaturas, se han asignado al docente Richard Sanguino", response.Mensaje);
+            Assert.AreEqual("Se le asigno al docente Richard correctamente la asignatura de Español", response.Mensaje);
         }
     }
 }

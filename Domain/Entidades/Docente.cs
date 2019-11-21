@@ -20,20 +20,18 @@ namespace Domain.Entidades
             Id = numeroIdentificacion;
             Edad = edad;
             AñosExperiencia = añosExperiencia;
+            ListaDocenteAsignaturas = new List<DocenteAsignatura>();
         }
 
         public static bool IsValidarAñosExperiencia(int añosExperiencia) {
             return añosExperiencia < 2;
         }
 
-        public bool IsAlmacenarCursosAsignados(List<DocenteCurso> cursos)
+        public bool IsAlmacenarCursosAsignados(DocenteCurso curso)
         {
             try
             {
-                foreach (var curso in cursos)
-                {
-                    ListaDocenteCurso.Add(curso);
-                }
+                ListaDocenteCurso.Add(curso);
                 return true;
             }
             catch (Exception E)
@@ -43,14 +41,11 @@ namespace Domain.Entidades
             }
         }
 
-        public bool IsAlmacenarAsignaturasImpartidas(List<DocenteAsignatura> asignaturas)
+        public bool IsAlmacenarAsignaturasImpartidas(DocenteAsignatura asignatura)
         {
             try
             {
-                foreach (var asignatura in asignaturas)
-                {
-                    ListaDocenteAsignaturas.Add(asignatura);
-                }
+                ListaDocenteAsignaturas.Add(asignatura);
                 return true;
             }
             catch (Exception E)

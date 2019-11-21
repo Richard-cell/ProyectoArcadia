@@ -52,13 +52,12 @@ namespace DomainTest
                 "anuar.sanguino@gmail.com"
                 );
 
-            List<DocenteAsignatura> listaDocentes = new List<DocenteAsignatura>();
             DocenteAsignatura docenteAnuar = new DocenteAsignatura(docente2,asignatura);
             DocenteAsignatura docenteRichard = new DocenteAsignatura(docente1,asignatura);
-            listaDocentes.Add(docenteAnuar);
-            listaDocentes.Add(docenteRichard);
 
-            asignatura.IsAlmacenarDocentes(listaDocentes);
+            asignatura.IsAlmacenarDocentes(docenteAnuar);
+            asignatura.IsAlmacenarDocentes(docenteRichard);
+
             Assert.AreEqual(asignatura.ListaDocenteAsignaturas[0].Docente.PrimerNombre,"Anuar");
         }
     }

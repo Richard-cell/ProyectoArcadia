@@ -20,24 +20,17 @@ namespace Infraestructure.Contextos
 
         private void ConfigurarLlavesPrimarias(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<DocenteAsignatura>().HasKey(x => new { x.AsignaturaId, x.DocenteId });
-            modelBuilder.Entity<DocenteCurso>().HasKey(x => new { x.DocenteId, x.CursoId });
-
+            
             modelBuilder.Entity<Acudiente>().Property(x => x.Id).ValueGeneratedNever().IsRequired();
-
             modelBuilder.Entity<Asignatura>().Property(x => x.Id).ValueGeneratedNever().IsRequired();
-
             modelBuilder.Entity<Curso>().Property(x => x.Id).ValueGeneratedNever().IsRequired();
-
             modelBuilder.Entity<Docente>().Property(x => x.Id).ValueGeneratedNever().IsRequired();
-
             modelBuilder.Entity<Estudiante>().Property(x => x.Id).ValueGeneratedNever().IsRequired();
-
             modelBuilder.Entity<Matricula>().Property(x => x.Id).ValueGeneratedNever().IsRequired();
-
             modelBuilder.Entity<Nota>().Property(x => x.Id).ValueGeneratedNever().IsRequired();
-
             modelBuilder.Entity<PensionEscolar>().Property(x => x.Id).ValueGeneratedNever().IsRequired();
+            modelBuilder.Entity<DocenteAsignatura>().HasKey(x => new { x.AsignaturaId, x.DocenteId });
+            modelBuilder.Entity<DocenteCurso>().HasKey(x => new { x.CursoId, x.DocenteId });
         }
 
         public DbSet<Acudiente> Acudiente { get; set; }

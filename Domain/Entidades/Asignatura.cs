@@ -8,7 +8,7 @@ namespace Domain.Entidades
     public class Asignatura: Entity<int>
     {
         public string NombreAsignatura { get; private set; }
-        public int NotaId { get; private set; }
+        public List<Nota> ListaNotas { get; private set; }
         public List<DocenteAsignatura> ListaDocenteAsignaturas { get; private set; }
         public Asignatura()
         {
@@ -19,16 +19,28 @@ namespace Domain.Entidades
             Id = codigoAsignatura;
             NombreAsignatura = nombreAsignatura;
             ListaDocenteAsignaturas = new List<DocenteAsignatura>();
+            ListaNotas = new List<Nota>();
         }
 
-        public bool IsAlmacenarDocentes(List<DocenteAsignatura> docentes)
+        public bool IsAlmacenarDocentes(DocenteAsignatura docente)
         {
             try
             {
-                foreach (var docente in docentes)
-                {
-                    ListaDocenteAsignaturas.Add(docente);
-                } 
+                ListaDocenteAsignaturas.Add(docente);
+                return true;
+            }
+            catch (Exception E)
+            {
+                Console.WriteLine(E);
+                return false;
+            }
+        }
+
+        public bool IsAlmacenarNotas(Nota nota)
+        {
+            try
+            {
+                ListaNotas.Add(nota);
                 return true;
             }
             catch (Exception E)
