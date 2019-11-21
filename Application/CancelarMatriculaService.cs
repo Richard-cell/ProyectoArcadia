@@ -1,4 +1,5 @@
 ﻿using Domain.Contracts;
+using Domain.Entidades;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -16,13 +17,19 @@ namespace Application
 
         public CancelarMatriculaResponse Ejecutar(CancelarMatriculaRequest request)
         {
-
-            if (request == null)
+            Matricula matricula = _unitOfWork.MatriculaRepository.FindFirstOrDefault(t => t.Id == request.CodMatricula);
+            if (matricula != null)
             {
-
-
-                _unitOfWork.Commit();
-                return new CancelarMatriculaResponse { Mensaje = $"Se cancelo la matricula con el codigo {request.CodMatricula}" };
+                TimeSpan DiferenciaFechas = request.FechaCancelacion - matricula.FechaMatricula;
+                if (DiferenciaFechas.Days<=15) {
+                    _unitOfWork.MatriculaRepository.Delete(matricula);
+                    _unitOfWork.Commit();
+                    return new CancelarMatriculaResponse { Mensaje = $"Se cancelo la matricula con el codigo {request.CodMatricula}" };
+                }
+                else
+                {
+                    return new CancelarMatriculaResponse { Mensaje = $"El plazo para cancelar la matricula ya expiro" };
+                }
             }
             else
             {
@@ -33,8 +40,7 @@ namespace Application
 
     public class CancelarMatriculaRequest
     {
-        public int CodMatricula { get; set; }
-        public DateTime FechaMatricula { get; set; }
+        public long CodMatricula { get; set; }
         public DateTime FechaCancelacion { get; set; }
         public string MotivoCancelacion { get; set; }
     }
