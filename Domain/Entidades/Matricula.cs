@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Domain.Entidades
 {
-    public class Matricula: Entity<int>
+    public class Matricula: Entity<long>
     {
         private readonly float _valorMatriculaActual = 120000;
         public DateTime FechaMatricula { get; private set; }
@@ -19,7 +19,7 @@ namespace Domain.Entidades
         {
         }
 
-        public Matricula(int codigoMatricula, DateTime fechaMatricula, Estudiante estudiante, Acudiente acudiente, int numeroDocumentosAdjuntados, string estadoMatricula)
+        public Matricula(long codigoMatricula, DateTime fechaMatricula, Estudiante estudiante, Acudiente acudiente, int numeroDocumentosAdjuntados, string estadoMatricula)
         {
             Id = codigoMatricula;
             FechaMatricula = fechaMatricula;

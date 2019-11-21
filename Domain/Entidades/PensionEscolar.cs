@@ -5,19 +5,19 @@ using System.Text;
 
 namespace Domain.Entidades
 {
-    public class PensionEscolar : Entity<int>
+    public class PensionEscolar : Entity<long>
     {
         private readonly float _valorPension = 60000;
         public DateTime FechaInicioPension { get; set; }
         public float ValorPension { get; private set; }
         public List<Cuota> ListaCuotas { get; private set; }
-        public int EstudianteId { get; private set; }
+        public long EstudianteId { get; private set; }
 
         public PensionEscolar()
         {
         }
 
-        public PensionEscolar(int codigoPensionEscolar, DateTime fechaInicioPension)
+        public PensionEscolar(long codigoPensionEscolar, DateTime fechaInicioPension)
         {
             Id = codigoPensionEscolar;
             FechaInicioPension = fechaInicioPension;

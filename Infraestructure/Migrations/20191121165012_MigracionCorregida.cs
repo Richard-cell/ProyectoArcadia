@@ -11,7 +11,7 @@ namespace Infraestructure.Migrations
                 name: "Asignatura",
                 columns: table => new
                 {
-                    Id = table.Column<int>(nullable: false),
+                    Id = table.Column<long>(nullable: false),
                     NombreAsignatura = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
@@ -23,7 +23,7 @@ namespace Infraestructure.Migrations
                 name: "Boletin",
                 columns: table => new
                 {
-                    Id = table.Column<int>(nullable: false)
+                    Id = table.Column<long>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1")
                 },
                 constraints: table =>
@@ -35,7 +35,7 @@ namespace Infraestructure.Migrations
                 name: "Curso",
                 columns: table => new
                 {
-                    Id = table.Column<int>(nullable: false),
+                    Id = table.Column<long>(nullable: false),
                     GradoCurso = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
@@ -70,7 +70,7 @@ namespace Infraestructure.Migrations
                 name: "Matricula",
                 columns: table => new
                 {
-                    Id = table.Column<int>(nullable: false),
+                    Id = table.Column<long>(nullable: false),
                     FechaMatricula = table.Column<DateTime>(nullable: false),
                     NumeroDocumentosAdjuntados = table.Column<int>(nullable: false),
                     ValorMatricula = table.Column<float>(nullable: false),
@@ -82,35 +82,22 @@ namespace Infraestructure.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "PensionEscolar",
-                columns: table => new
-                {
-                    Id = table.Column<int>(nullable: false),
-                    FechaInicioPension = table.Column<DateTime>(nullable: false),
-                    ValorPension = table.Column<float>(nullable: false),
-                    EstudianteId = table.Column<int>(nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_PensionEscolar", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "DocenteAsignatura",
                 columns: table => new
                 {
                     DocenteId = table.Column<long>(nullable: false),
-                    AsignaturaId = table.Column<int>(nullable: false)
+                    AsignaturaId = table.Column<int>(nullable: false),
+                    AsignaturaId1 = table.Column<long>(nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_DocenteAsignatura", x => new { x.AsignaturaId, x.DocenteId });
                     table.ForeignKey(
-                        name: "FK_DocenteAsignatura_Asignatura_AsignaturaId",
-                        column: x => x.AsignaturaId,
+                        name: "FK_DocenteAsignatura_Asignatura_AsignaturaId1",
+                        column: x => x.AsignaturaId1,
                         principalTable: "Asignatura",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_DocenteAsignatura_Docente_DocenteId",
                         column: x => x.DocenteId,
@@ -124,46 +111,22 @@ namespace Infraestructure.Migrations
                 columns: table => new
                 {
                     DocenteId = table.Column<long>(nullable: false),
-                    CursoId = table.Column<int>(nullable: false)
+                    CursoId = table.Column<int>(nullable: false),
+                    CursoId1 = table.Column<long>(nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_DocenteCurso", x => new { x.CursoId, x.DocenteId });
                     table.ForeignKey(
-                        name: "FK_DocenteCurso_Curso_CursoId",
-                        column: x => x.CursoId,
+                        name: "FK_DocenteCurso_Curso_CursoId1",
+                        column: x => x.CursoId1,
                         principalTable: "Curso",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_DocenteCurso_Docente_DocenteId",
                         column: x => x.DocenteId,
                         principalTable: "Docente",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Cuota",
-                columns: table => new
-                {
-                    Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    MesCuota = table.Column<int>(nullable: false),
-                    FechaPagoCuota = table.Column<DateTime>(nullable: false),
-                    FechaLimitePagoCuota = table.Column<DateTime>(nullable: false),
-                    ValorCuota = table.Column<float>(nullable: false),
-                    ValorTotalAPagar = table.Column<float>(nullable: false),
-                    EstadoCuota = table.Column<string>(nullable: true),
-                    PensionEscolarId = table.Column<int>(nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Cuota", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Cuota_PensionEscolar_PensionEscolarId",
-                        column: x => x.PensionEscolarId,
-                        principalTable: "PensionEscolar",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -190,9 +153,8 @@ namespace Infraestructure.Migrations
                     LugarEntreHermanos = table.Column<int>(nullable: false),
                     SeguroSocial = table.Column<string>(nullable: true),
                     PuntajeSisben = table.Column<float>(nullable: false),
-                    MatriculaId = table.Column<int>(nullable: false),
-                    CursoId = table.Column<int>(nullable: true),
-                    PensionEscolarId = table.Column<int>(nullable: true)
+                    MatriculaId = table.Column<long>(nullable: false),
+                    CursoId = table.Column<long>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -209,12 +171,6 @@ namespace Infraestructure.Migrations
                         principalTable: "Matricula",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_Estudiante_PensionEscolar_PensionEscolarId",
-                        column: x => x.PensionEscolarId,
-                        principalTable: "PensionEscolar",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -234,7 +190,7 @@ namespace Infraestructure.Migrations
                     CorreoElectronico = table.Column<string>(nullable: true),
                     Parentezco = table.Column<string>(nullable: true),
                     EstudianteId = table.Column<long>(nullable: false),
-                    MatriculaId = table.Column<int>(nullable: true)
+                    MatriculaId = table.Column<long>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -257,16 +213,15 @@ namespace Infraestructure.Migrations
                 name: "Nota",
                 columns: table => new
                 {
-                    Id = table.Column<int>(nullable: false),
+                    Id = table.Column<long>(nullable: false),
                     NotaPrimerPeriodo = table.Column<float>(nullable: false),
                     NotaSegundoPeriodo = table.Column<float>(nullable: false),
                     NotaTercerPeriodo = table.Column<float>(nullable: false),
                     NotaCuartoPeriodo = table.Column<float>(nullable: false),
                     PromedioNota = table.Column<float>(nullable: false),
-                    AsignaturaId = table.Column<int>(nullable: false),
-                    BoletinId = table.Column<int>(nullable: true),
-                    EstudianteId = table.Column<int>(nullable: false),
-                    EstudianteId1 = table.Column<long>(nullable: true)
+                    AsignaturaId = table.Column<long>(nullable: false),
+                    BoletinId = table.Column<long>(nullable: true),
+                    EstudianteId = table.Column<long>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -284,11 +239,56 @@ namespace Infraestructure.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_Nota_Estudiante_EstudianteId1",
-                        column: x => x.EstudianteId1,
+                        name: "FK_Nota_Estudiante_EstudianteId",
+                        column: x => x.EstudianteId,
                         principalTable: "Estudiante",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "PensionEscolar",
+                columns: table => new
+                {
+                    Id = table.Column<long>(nullable: false),
+                    FechaInicioPension = table.Column<DateTime>(nullable: false),
+                    ValorPension = table.Column<float>(nullable: false),
+                    EstudianteId = table.Column<long>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_PensionEscolar", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_PensionEscolar_Estudiante_EstudianteId",
+                        column: x => x.EstudianteId,
+                        principalTable: "Estudiante",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Cuota",
+                columns: table => new
+                {
+                    Id = table.Column<long>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    MesCuota = table.Column<int>(nullable: false),
+                    FechaPagoCuota = table.Column<DateTime>(nullable: false),
+                    FechaLimitePagoCuota = table.Column<DateTime>(nullable: false),
+                    ValorCuota = table.Column<float>(nullable: false),
+                    ValorTotalAPagar = table.Column<float>(nullable: false),
+                    EstadoCuota = table.Column<string>(nullable: true),
+                    PensionEscolarId = table.Column<long>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Cuota", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Cuota_PensionEscolar_PensionEscolarId",
+                        column: x => x.PensionEscolarId,
+                        principalTable: "PensionEscolar",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
@@ -310,9 +310,19 @@ namespace Infraestructure.Migrations
                 column: "PensionEscolarId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_DocenteAsignatura_AsignaturaId1",
+                table: "DocenteAsignatura",
+                column: "AsignaturaId1");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_DocenteAsignatura_DocenteId",
                 table: "DocenteAsignatura",
                 column: "DocenteId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_DocenteCurso_CursoId1",
+                table: "DocenteCurso",
+                column: "CursoId1");
 
             migrationBuilder.CreateIndex(
                 name: "IX_DocenteCurso_DocenteId",
@@ -331,11 +341,6 @@ namespace Infraestructure.Migrations
                 unique: true);
 
             migrationBuilder.CreateIndex(
-                name: "IX_Estudiante_PensionEscolarId",
-                table: "Estudiante",
-                column: "PensionEscolarId");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_Nota_AsignaturaId",
                 table: "Nota",
                 column: "AsignaturaId");
@@ -346,9 +351,15 @@ namespace Infraestructure.Migrations
                 column: "BoletinId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Nota_EstudianteId1",
+                name: "IX_Nota_EstudianteId",
                 table: "Nota",
-                column: "EstudianteId1");
+                column: "EstudianteId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_PensionEscolar_EstudianteId",
+                table: "PensionEscolar",
+                column: "EstudianteId",
+                unique: true);
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -369,6 +380,9 @@ namespace Infraestructure.Migrations
                 name: "Nota");
 
             migrationBuilder.DropTable(
+                name: "PensionEscolar");
+
+            migrationBuilder.DropTable(
                 name: "Docente");
 
             migrationBuilder.DropTable(
@@ -385,9 +399,6 @@ namespace Infraestructure.Migrations
 
             migrationBuilder.DropTable(
                 name: "Matricula");
-
-            migrationBuilder.DropTable(
-                name: "PensionEscolar");
         }
     }
 }

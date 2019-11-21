@@ -6,7 +6,7 @@ using System.Text;
 
 namespace Domain.Entidades
 {
-    public class Curso : Entity<int>
+    public class Curso : Entity<long>
     {
         public int GradoCurso { get; private set; }
         public List<DocenteCurso> ListaDocenteCurso { get; set; }
@@ -16,7 +16,7 @@ namespace Domain.Entidades
         {
         }
 
-        public Curso(int codigoCurso, int gradoCurso)
+        public Curso(long codigoCurso, int gradoCurso)
         {
             Id = codigoCurso;
             GradoCurso = gradoCurso;

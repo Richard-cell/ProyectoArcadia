@@ -10,7 +10,7 @@ namespace Domain.Entidades
         private  static List<string> _listaParentezco;
         public string Parentezco { get; private set; }
         public long EstudianteId { get; private set; }
-        public int? MatriculaId { get; private set; }
+        public long? MatriculaId { get; private set; }
         public Acudiente() { }
         public Acudiente( string parentezco, string tipoDocumento,long numeroIdentificacion,string primerNombre, string segundoNombre, string primerApellido, string segundoApellido, string direccion, long telefono, char sexo, int estratoSocial, string correoElectronico) :base(tipoDocumento,primerNombre,segundoNombre,primerApellido,segundoApellido,direccion,telefono, sexo, estratoSocial, correoElectronico) {
             Id = numeroIdentificacion;

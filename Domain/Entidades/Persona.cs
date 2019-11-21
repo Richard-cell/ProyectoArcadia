@@ -7,7 +7,7 @@ namespace Domain.Base
     public abstract class Persona<T>: BaseEntity
     {
         public T Id { get; set; }
-        public string TipoDocumento { get; set; }
+        public string TipoDocumento { get; private set; }
         public string PrimerNombre { get; private set; }
         public string SegundoNombre { get; private set; }
         public string PrimerApellido { get; private set; }

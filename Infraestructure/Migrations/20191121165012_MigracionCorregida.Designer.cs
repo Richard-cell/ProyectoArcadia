@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Infraestructure.Migrations
 {
     [DbContext(typeof(ColegioContext))]
-    [Migration("20191121152433_MigracionCorregida")]
+    [Migration("20191121165012_MigracionCorregida")]
     partial class MigracionCorregida
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -38,8 +38,8 @@ namespace Infraestructure.Migrations
                     b.Property<long>("EstudianteId")
                         .HasColumnType("bigint");
 
-                    b.Property<int?>("MatriculaId")
-                        .HasColumnType("int");
+                    b.Property<long?>("MatriculaId")
+                        .HasColumnType("bigint");
 
                     b.Property<string>("Parentezco")
                         .HasColumnType("nvarchar(max)");
@@ -80,8 +80,8 @@ namespace Infraestructure.Migrations
 
             modelBuilder.Entity("Domain.Entidades.Asignatura", b =>
                 {
-                    b.Property<int>("Id")
-                        .HasColumnType("int");
+                    b.Property<long>("Id")
+                        .HasColumnType("bigint");
 
                     b.Property<string>("NombreAsignatura")
                         .HasColumnType("nvarchar(max)");
@@ -93,9 +93,9 @@ namespace Infraestructure.Migrations
 
             modelBuilder.Entity("Domain.Entidades.Boletin", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
+                        .HasColumnType("bigint")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.HasKey("Id");
@@ -105,9 +105,9 @@ namespace Infraestructure.Migrations
 
             modelBuilder.Entity("Domain.Entidades.Cuota", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
+                        .HasColumnType("bigint")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("EstadoCuota")
@@ -122,8 +122,8 @@ namespace Infraestructure.Migrations
                     b.Property<int>("MesCuota")
                         .HasColumnType("int");
 
-                    b.Property<int>("PensionEscolarId")
-                        .HasColumnType("int");
+                    b.Property<long>("PensionEscolarId")
+                        .HasColumnType("bigint");
 
                     b.Property<float>("ValorCuota")
                         .HasColumnType("real");
@@ -140,8 +140,8 @@ namespace Infraestructure.Migrations
 
             modelBuilder.Entity("Domain.Entidades.Curso", b =>
                 {
-                    b.Property<int>("Id")
-                        .HasColumnType("int");
+                    b.Property<long>("Id")
+                        .HasColumnType("bigint");
 
                     b.Property<int>("GradoCurso")
                         .HasColumnType("int");
@@ -206,7 +206,12 @@ namespace Infraestructure.Migrations
                     b.Property<long>("DocenteId")
                         .HasColumnType("bigint");
 
+                    b.Property<long?>("AsignaturaId1")
+                        .HasColumnType("bigint");
+
                     b.HasKey("AsignaturaId", "DocenteId");
+
+                    b.HasIndex("AsignaturaId1");
 
                     b.HasIndex("DocenteId");
 
@@ -221,7 +226,12 @@ namespace Infraestructure.Migrations
                     b.Property<long>("DocenteId")
                         .HasColumnType("bigint");
 
+                    b.Property<long?>("CursoId1")
+                        .HasColumnType("bigint");
+
                     b.HasKey("CursoId", "DocenteId");
+
+                    b.HasIndex("CursoId1");
 
                     b.HasIndex("DocenteId");
 
@@ -236,8 +246,8 @@ namespace Infraestructure.Migrations
                     b.Property<string>("CorreoElectronico")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("CursoId")
-                        .HasColumnType("int");
+                    b.Property<long?>("CursoId")
+                        .HasColumnType("bigint");
 
                     b.Property<string>("Direccion")
                         .HasColumnType("nvarchar(max)");
@@ -254,13 +264,10 @@ namespace Infraestructure.Migrations
                     b.Property<string>("LugarNacimiento")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("MatriculaId")
-                        .HasColumnType("int");
+                    b.Property<long>("MatriculaId")
+                        .HasColumnType("bigint");
 
                     b.Property<int>("NumeroHermanos")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("PensionEscolarId")
                         .HasColumnType("int");
 
                     b.Property<string>("PrimerApellido")
@@ -301,15 +308,13 @@ namespace Infraestructure.Migrations
                     b.HasIndex("MatriculaId")
                         .IsUnique();
 
-                    b.HasIndex("PensionEscolarId");
-
                     b.ToTable("Estudiante");
                 });
 
             modelBuilder.Entity("Domain.Entidades.Matricula", b =>
                 {
-                    b.Property<int>("Id")
-                        .HasColumnType("int");
+                    b.Property<long>("Id")
+                        .HasColumnType("bigint");
 
                     b.Property<string>("EstadoMatricula")
                         .HasColumnType("nvarchar(max)");
@@ -330,19 +335,16 @@ namespace Infraestructure.Migrations
 
             modelBuilder.Entity("Domain.Entidades.Nota", b =>
                 {
-                    b.Property<int>("Id")
-                        .HasColumnType("int");
+                    b.Property<long>("Id")
+                        .HasColumnType("bigint");
 
-                    b.Property<int>("AsignaturaId")
-                        .HasColumnType("int");
+                    b.Property<long>("AsignaturaId")
+                        .HasColumnType("bigint");
 
-                    b.Property<int?>("BoletinId")
-                        .HasColumnType("int");
+                    b.Property<long?>("BoletinId")
+                        .HasColumnType("bigint");
 
-                    b.Property<int>("EstudianteId")
-                        .HasColumnType("int");
-
-                    b.Property<long?>("EstudianteId1")
+                    b.Property<long>("EstudianteId")
                         .HasColumnType("bigint");
 
                     b.Property<float>("NotaCuartoPeriodo")
@@ -366,18 +368,18 @@ namespace Infraestructure.Migrations
 
                     b.HasIndex("BoletinId");
 
-                    b.HasIndex("EstudianteId1");
+                    b.HasIndex("EstudianteId");
 
                     b.ToTable("Nota");
                 });
 
             modelBuilder.Entity("Domain.Entidades.PensionEscolar", b =>
                 {
-                    b.Property<int>("Id")
-                        .HasColumnType("int");
+                    b.Property<long>("Id")
+                        .HasColumnType("bigint");
 
-                    b.Property<int>("EstudianteId")
-                        .HasColumnType("int");
+                    b.Property<long>("EstudianteId")
+                        .HasColumnType("bigint");
 
                     b.Property<DateTime>("FechaInicioPension")
                         .HasColumnType("datetime2");
@@ -386,6 +388,9 @@ namespace Infraestructure.Migrations
                         .HasColumnType("real");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("EstudianteId")
+                        .IsUnique();
 
                     b.ToTable("PensionEscolar");
                 });
@@ -416,9 +421,7 @@ namespace Infraestructure.Migrations
                 {
                     b.HasOne("Domain.Entidades.Asignatura", "Asignatura")
                         .WithMany("ListaDocenteAsignaturas")
-                        .HasForeignKey("AsignaturaId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("AsignaturaId1");
 
                     b.HasOne("Domain.Entidades.Docente", "Docente")
                         .WithMany("ListaDocenteAsignaturas")
@@ -431,9 +434,7 @@ namespace Infraestructure.Migrations
                 {
                     b.HasOne("Domain.Entidades.Curso", "Curso")
                         .WithMany("ListaDocenteCurso")
-                        .HasForeignKey("CursoId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("CursoId1");
 
                     b.HasOne("Domain.Entidades.Docente", "Docente")
                         .WithMany("ListaDocenteCurso")
@@ -453,10 +454,6 @@ namespace Infraestructure.Migrations
                         .HasForeignKey("Domain.Entidades.Estudiante", "MatriculaId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.HasOne("Domain.Entidades.PensionEscolar", "PensionEscolar")
-                        .WithMany()
-                        .HasForeignKey("PensionEscolarId");
                 });
 
             modelBuilder.Entity("Domain.Entidades.Nota", b =>
@@ -473,7 +470,18 @@ namespace Infraestructure.Migrations
 
                     b.HasOne("Domain.Entidades.Estudiante", null)
                         .WithMany("ListaNotas")
-                        .HasForeignKey("EstudianteId1");
+                        .HasForeignKey("EstudianteId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Domain.Entidades.PensionEscolar", b =>
+                {
+                    b.HasOne("Domain.Entidades.Estudiante", null)
+                        .WithOne("PensionEscolar")
+                        .HasForeignKey("Domain.Entidades.PensionEscolar", "EstudianteId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }

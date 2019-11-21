@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Domain.Entidades
 {
-    public class Cuota: Entity<int>
+    public class Cuota: Entity<long>
     {
         public int MesCuota { get; private set; }
         public DateTime FechaPagoCuota { get; private set; }
@@ -13,13 +13,13 @@ namespace Domain.Entidades
         public float ValorCuota { get;private set; }
         public float ValorTotalAPagar { get; private set; }
         public string EstadoCuota { get; private set; }
-        public int PensionEscolarId { get; private set; }
+        public long PensionEscolarId { get; private set; }
 
         public Cuota()
         {
         }
 
-        public Cuota(int codigoCuota, int mesCuota, DateTime fechaLimitePago, string estadoCuota, float valorCuota)
+        public Cuota(long codigoCuota, int mesCuota, DateTime fechaLimitePago, string estadoCuota, float valorCuota)
         {
             Id = codigoCuota;
             MesCuota = mesCuota;

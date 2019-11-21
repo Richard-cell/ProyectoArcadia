@@ -5,16 +5,16 @@ using System.Text;
 
 namespace Domain.Entidades
 {
-    public class Nota : Entity<int>
+    public class Nota : Entity<long>
     {
         public float NotaPrimerPeriodo { get; private set; }
         public float NotaSegundoPeriodo { get; private set; }
         public float NotaTercerPeriodo { get; private set; }
         public float NotaCuartoPeriodo { get; private set; }
         public float PromedioNota { get; private set; }
-        public int AsignaturaId { get; private set; }
-        public int? BoletinId { get; private set; }
-        public int EstudianteId { get; private set; }
+        public long AsignaturaId { get; private set; }
+        public long? BoletinId { get; private set; }
+        public long EstudianteId { get; private set; }
 
         public Nota()
         {

@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Domain.Entidades
 {
-    public class Asignatura: Entity<int>
+    public class Asignatura: Entity<long>
     {
         public string NombreAsignatura { get; private set; }
         public List<Nota> ListaNotas { get; private set; }
