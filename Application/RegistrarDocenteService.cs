@@ -39,7 +39,7 @@ namespace Application
                     );
                     _unitOfWork.DocenteRepository.Add(docente);
                     _unitOfWork.Commit();
-                    return new RegistrarDocenteResponse { Mensaje = $"Se creó con registro correctamente al docente {request.DocumentoIdentidad}" };
+                    return new RegistrarDocenteResponse { Mensaje = $"Se registro correctamente al docente {request.DocumentoIdentidad}" };
                 }
                 else {
                     return new RegistrarDocenteResponse { Mensaje = $"El docente debe tener minimo 2 años de XP" };

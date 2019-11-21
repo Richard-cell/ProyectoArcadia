@@ -20,16 +20,23 @@ namespace Application
            Matricula matricula = _unitOfWork.MatriculaRepository.FindFirstOrDefault(t => t.Id == request.CodigoMatricula);
             if (matricula == null)
             {
-                  matricula = new Matricula(
-                    request.CodigoMatricula,
-                    request.FechaMatricula,
-                    AlmacenarEstudiante(request),
-                    request.NumeroDocumentosAdjuntados,
-                    request.EstadoMatricula
-                    );
-                _unitOfWork.MatriculaRepository.Add(matricula);
-                _unitOfWork.Commit();
-                return new RealizarMatriculaResponse() { Mensaje = $"Se creó con exito la matricula {request.CodigoMatricula}" };
+                if (Matricula.IsValidarNumeroDocumentos(request.NumeroDocumentosAdjuntados)) {
+                    matricula = new Matricula(
+                        request.CodigoMatricula,
+                        request.FechaMatricula,
+                        AlmacenarEstudiante(request),
+                        request.NumeroDocumentosAdjuntados,
+                        request.EstadoMatricula
+                        );
+                    _unitOfWork.MatriculaRepository.Add(matricula);
+                    _unitOfWork.Commit();
+                    return new RealizarMatriculaResponse() { Mensaje = $"Se creó con exito la matricula {request.CodigoMatricula}" };
+                }
+                else
+                {
+                    return new RealizarMatriculaResponse() { Mensaje = $"Debe adjuntar los 8 documentos requeridos" };
+                }
+                  
             }
             else
             {

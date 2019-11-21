@@ -28,9 +28,9 @@ namespace Domain.Entidades
             ValorMatricula = _valorMatriculaActual;
         }
 
-        public bool IsValidarNumeroDocumentos()
+        public static bool IsValidarNumeroDocumentos(int numeroDocumentos)
         {
-            return NumeroDocumentosAdjuntados == 8;
+            return numeroDocumentos == 8;
         }
     }
 }

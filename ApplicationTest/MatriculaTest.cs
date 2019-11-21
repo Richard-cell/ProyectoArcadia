@@ -16,9 +16,7 @@ namespace ApplicationTest
         [SetUp]
         public void Setup()
         {
-            var optionsSqlServer = new DbContextOptionsBuilder<ColegioContext>()
-             .UseSqlServer("Server = (localdb)\\MSSQLLocalDB; Database = ColegioDB; Trusted_Connection = True; MultipleActiveResultSets = true")
-             .Options;
+            var optionsSqlServer = new DbContextOptionsBuilder<ColegioContext>().UseSqlServer("Server = (localdb)\\MSSQLLocalDB; Database = ColegioDB; Trusted_Connection = True; MultipleActiveResultSets = true").Options;
             var optionsInMemory = new DbContextOptionsBuilder<ColegioContext>().UseInMemoryDatabase("ColegioDBT").Options;
             _contextInMemory = new ColegioContext(optionsInMemory);
             _contextInBD = new ColegioContext(optionsSqlServer);
