@@ -189,8 +189,7 @@ namespace Infraestructure.Migrations
                     EstratoSocial = table.Column<int>(nullable: false),
                     CorreoElectronico = table.Column<string>(nullable: true),
                     Parentezco = table.Column<string>(nullable: true),
-                    EstudianteId = table.Column<long>(nullable: false),
-                    MatriculaId = table.Column<long>(nullable: true)
+                    EstudianteId = table.Column<long>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -201,12 +200,6 @@ namespace Infraestructure.Migrations
                         principalTable: "Estudiante",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_Acudiente_Matricula_MatriculaId",
-                        column: x => x.MatriculaId,
-                        principalTable: "Matricula",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -296,13 +289,6 @@ namespace Infraestructure.Migrations
                 table: "Acudiente",
                 column: "EstudianteId",
                 unique: true);
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Acudiente_MatriculaId",
-                table: "Acudiente",
-                column: "MatriculaId",
-                unique: true,
-                filter: "[MatriculaId] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Cuota_PensionEscolarId",

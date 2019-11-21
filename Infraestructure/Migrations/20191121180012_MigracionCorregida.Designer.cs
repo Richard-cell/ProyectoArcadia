@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Infraestructure.Migrations
 {
     [DbContext(typeof(ColegioContext))]
-    [Migration("20191121165012_MigracionCorregida")]
+    [Migration("20191121180012_MigracionCorregida")]
     partial class MigracionCorregida
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -36,9 +36,6 @@ namespace Infraestructure.Migrations
                         .HasColumnType("int");
 
                     b.Property<long>("EstudianteId")
-                        .HasColumnType("bigint");
-
-                    b.Property<long?>("MatriculaId")
                         .HasColumnType("bigint");
 
                     b.Property<string>("Parentezco")
@@ -70,10 +67,6 @@ namespace Infraestructure.Migrations
 
                     b.HasIndex("EstudianteId")
                         .IsUnique();
-
-                    b.HasIndex("MatriculaId")
-                        .IsUnique()
-                        .HasFilter("[MatriculaId] IS NOT NULL");
 
                     b.ToTable("Acudiente");
                 });
@@ -402,10 +395,6 @@ namespace Infraestructure.Migrations
                         .HasForeignKey("Domain.Entidades.Acudiente", "EstudianteId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.HasOne("Domain.Entidades.Matricula", null)
-                        .WithOne("Acudiente")
-                        .HasForeignKey("Domain.Entidades.Acudiente", "MatriculaId");
                 });
 
             modelBuilder.Entity("Domain.Entidades.Cuota", b =>

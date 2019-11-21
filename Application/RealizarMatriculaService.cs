@@ -24,7 +24,6 @@ namespace Application
                     request.CodigoMatricula,
                     request.FechaMatricula,
                     AlmacenarEstudiante(request),
-                    AlmacenarAcudiente(request),
                     request.NumeroDocumentosAdjuntados,
                     request.EstadoMatricula
                     );
@@ -34,7 +33,7 @@ namespace Application
             }
             else
             {
-                return new RealizarMatriculaResponse() { Mensaje = $"la matricula ya exite" };
+                return new RealizarMatriculaResponse() { Mensaje = $"El estudiante {request.PrimerNombreEstudiante} {request.PrimerApellidoEstudiante} ya se encuentra matriculado" };
             }
         }
 

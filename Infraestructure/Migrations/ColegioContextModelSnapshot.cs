@@ -36,9 +36,6 @@ namespace Infraestructure.Migrations
                     b.Property<long>("EstudianteId")
                         .HasColumnType("bigint");
 
-                    b.Property<long?>("MatriculaId")
-                        .HasColumnType("bigint");
-
                     b.Property<string>("Parentezco")
                         .HasColumnType("nvarchar(max)");
 
@@ -68,10 +65,6 @@ namespace Infraestructure.Migrations
 
                     b.HasIndex("EstudianteId")
                         .IsUnique();
-
-                    b.HasIndex("MatriculaId")
-                        .IsUnique()
-                        .HasFilter("[MatriculaId] IS NOT NULL");
 
                     b.ToTable("Acudiente");
                 });
@@ -400,10 +393,6 @@ namespace Infraestructure.Migrations
                         .HasForeignKey("Domain.Entidades.Acudiente", "EstudianteId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.HasOne("Domain.Entidades.Matricula", null)
-                        .WithOne("Acudiente")
-                        .HasForeignKey("Domain.Entidades.Acudiente", "MatriculaId");
                 });
 
             modelBuilder.Entity("Domain.Entidades.Cuota", b =>

@@ -33,7 +33,6 @@ namespace Domain.Entidades
                 for (int i = 0; i < 11; i++)
                 {
                     Cuota cuota = new Cuota(
-                        100+EstudianteId,
                         i,
                         FechaInicioPension.AddMonths(i),
                         "No Pagado",

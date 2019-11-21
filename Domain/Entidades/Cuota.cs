@@ -19,9 +19,8 @@ namespace Domain.Entidades
         {
         }
 
-        public Cuota(long codigoCuota, int mesCuota, DateTime fechaLimitePago, string estadoCuota, float valorCuota)
+        public Cuota( int mesCuota, DateTime fechaLimitePago, string estadoCuota, float valorCuota)
         {
-            Id = codigoCuota;
             MesCuota = mesCuota;
             FechaLimitePagoCuota = fechaLimitePago;
             EstadoCuota = estadoCuota;
