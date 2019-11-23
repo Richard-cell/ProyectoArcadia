@@ -20,6 +20,7 @@ namespace Domain.Entidades
         {
             Id = codigoCurso;
             GradoCurso = gradoCurso;
+            ListaDocenteCurso = new List<DocenteCurso>();
         }
 
         public bool IsValidarNumeroEstudiantes() {
@@ -42,13 +43,10 @@ namespace Domain.Entidades
             }
         }
 
-        public bool IsAlmacenarDocentes(List<DocenteCurso> docentes) {
+        public bool IsAlmacenarDocentes(DocenteCurso docente) {
             try
             {
-                foreach (var docente in docentes)
-                {
-                    ListaDocenteCurso.Add(docente);
-                }
+                ListaDocenteCurso.Add(docente);
                 return true;
             }
             catch (Exception E)
@@ -68,6 +66,50 @@ namespace Domain.Entidades
             {
                 return true;
             }
+        }
+
+        public bool IsValidarDocenteExistenteEnCurso(long numeroIdentificacion)
+        {
+            bool encontrado = false;
+            try
+            {
+                foreach (var docente in ListaDocenteCurso)
+                {
+                    if (docente.Docente.Id==numeroIdentificacion)
+                    {
+                        encontrado = true;
+                        break;
+                    }
+                }
+            }
+            catch (Exception E)
+            {
+                Console.WriteLine(E);
+            }
+            return encontrado;
+        }
+
+        public bool IsValidarDocenteConMismaAsignatura(long codigoAsignatura)
+        {
+            bool encontrado = false;
+            try
+            {
+                foreach (var docente in ListaDocenteCurso)
+                {
+                    foreach (var asignatura in docente.Docente.ListaDocenteAsignaturas)
+                    {
+                        if (asignatura.Asignatura.Id==codigoAsignatura)
+                        {
+                            encontrado = true;
+                        }
+                    }
+                }
+            }
+            catch (Exception E)
+            {
+                Console.WriteLine(E);
+            }
+            return encontrado;
         }
     }
 }

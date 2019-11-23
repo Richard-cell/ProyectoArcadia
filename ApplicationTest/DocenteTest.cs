@@ -43,7 +43,7 @@ namespace ApplicationTest
                 Estrato = 1,
                 Email = "ssss"
             };
-            RegistrarDocenteService serviceDocente = new RegistrarDocenteService(new UnitOfWork(_contextInBD));
+            RegistrarDocenteService serviceDocente = new RegistrarDocenteService(new UnitOfWork(_contextInMemory));
             var response = serviceDocente.Ejecutar(requestRegistrarDocente);
             Assert.AreEqual("Se registro correctamente al docente 1065842658",response.Mensaje);
         }
