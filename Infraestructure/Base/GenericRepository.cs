@@ -88,9 +88,9 @@ namespace Infraestructure.Base
             return query;
         }
 
-        public T FindFirstOrDefaultWhereInclude(Expression<Func<T, bool>> predicate, Expression<Func<T, object>> include)
+        public T FindFirstOrDefaultWhere(Expression<Func<T, bool>> predicate, Expression<Func<T, object>> include)
         {
-            T query = _dbset.Where(predicate).Include(include).FirstOrDefault();
+            T query = _dbset.Where(predicate).FirstOrDefault();
             return query;
         }
 

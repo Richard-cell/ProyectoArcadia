@@ -18,7 +18,7 @@ namespace DomainTest
                 1001,
                 new DateTime(2019, 05, 05)
             );
-            Assert.AreEqual(pensionEscolar.ListaCuotas.Count, 11);
+            Assert.AreEqual(pensionEscolar.ListaCuotas.Count, 10);
         }
 
         [Test]

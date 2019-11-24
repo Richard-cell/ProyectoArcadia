@@ -21,19 +21,17 @@ namespace Domain.Entidades
             Id = codigoCurso;
             GradoCurso = gradoCurso;
             ListaDocenteCurso = new List<DocenteCurso>();
+            ListaEstudiantes = new List<Estudiante>();
         }
 
         public bool IsValidarNumeroEstudiantes() {
             return ListaEstudiantes.Count > 40;
         }
 
-        public bool IsAlmacenarEstudiantes(List<Estudiante> estudiantes) {
+        public bool IsAlmacenarEstudiante(Estudiante estudiante) {
             try
             {
-                foreach (var estudiante in estudiantes)
-                {
-                    ListaEstudiantes.Add(estudiante);
-                }
+                ListaEstudiantes.Add(estudiante);
                 return true;
             }
             catch (Exception E)
@@ -102,6 +100,27 @@ namespace Domain.Entidades
                         {
                             encontrado = true;
                         }
+                    }
+                }
+            }
+            catch (Exception E)
+            {
+                Console.WriteLine(E);
+            }
+            return encontrado;
+        }
+
+        public bool IsValidarEstudianteExistenteEnCurso(long numeroIdentificacion)
+        {
+            bool encontrado = false;
+            try
+            {
+                foreach (var estudiante in ListaEstudiantes)
+                {
+                    if (estudiante.Id == numeroIdentificacion)
+                    {
+                        encontrado = true;
+                        break;
                     }
                 }
             }

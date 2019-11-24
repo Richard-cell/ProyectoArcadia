@@ -86,5 +86,68 @@ namespace ApplicationTest
             var response = serviceAsignarDocenteACurso.Ejecutar(requestAsignarDocenteACurso);
             Assert.AreEqual("Se ha asignado correctamente el docente 1065842658 al curso 601", response.Mensaje);
         }
+
+        [Test]
+        public void AlmacenarEstudianteACursoExitoso()
+        {
+            RealizarMatriculaRequest requestMatricula = new RealizarMatriculaRequest
+            {
+                CodigoMatricula = 1001,
+                FechaMatricula = new DateTime(2019, 05, 05),
+                NumeroIdentificacionEstudiante = 98081212260,
+                TipoDocumentoEstudiante = "TI",
+                PrimerNombreEstudiante = "Richard",
+                SegundoNombreEstudiante = "Andres",
+                PrimerApellidoEstudiante = "Sanguino",
+                SegundoApellidoEstudiante = "Ramirez",
+                DireccionEstudiante = "Calle 31#28-17",
+                TelefonoEstudiante = 3101234567,
+                SexoEstudiante = 'M',
+                EstratoSocialEstudiante = 1,
+                CorreoElectronicoEstudiante = "No tiene",
+                LugarNacimientoEstudiante = "Valledupar",
+                FechaNacimientoEstudiante = new DateTime(1998, 12, 08),
+                RHEstudiante = "O+",
+                NumeroHermanosEstudiante = 3,
+                LugarEntreHermanosEstudiante = 2,
+                SeguroSocialEstudiante = "Si tiene",
+                PuntajeSisbenEstudiante = 12.5f,
+                NumeroIdentificacionAcudiente = 106842658,
+                TipoDocumentoAcudiente = "CC",
+                PrimerNombreAcudiente = "Richard",
+                SegundoNombreAcudiente = "Jose",
+                PrimerApellidoAcudiente = "Sanguino",
+                SegundoApellidoAcudiente = "Sanguino",
+                DireccionAcudiente = "Calle 31#28-17",
+                TelefonoAcudiente = 3154177696,
+                SexoAcudiente = 'M',
+                EstratoSocialAcudiente = 1,
+                CorreoElectronicoAcudiente = "richard3.sanguino@gmail.com",
+                Parentezco = "Padre",
+                NumeroDocumentosAdjuntados = 8,
+                EstadoMatricula = "Activa"
+            };
+
+            RealizarMatriculaService serviceMatricula = new RealizarMatriculaService(new UnitOfWork(_contextInMemory));
+            serviceMatricula.Ejecutar(requestMatricula);
+
+            RegistrarCursoRequest requestCurso = new RegistrarCursoRequest
+            {
+                CodigoCurso = 601,
+                Grado = 6
+            };
+            RegistrarCursoService serviceCurso = new RegistrarCursoService(new UnitOfWork(_contextInMemory));
+            serviceCurso.Ejecutar(requestCurso);
+
+            AsignarEstudianteACursoRequest requestAsignarEstudiante = new AsignarEstudianteACursoRequest
+            {
+                CodigoCurso=601,
+                NumeroIdentificacionEstudiante= 98081212260
+            };
+            AsignarEstudianteACursoService serviceAsignarEstudiante = new AsignarEstudianteACursoService(new UnitOfWork(_contextInMemory));
+            var response = serviceAsignarEstudiante.Ejecutar(requestAsignarEstudiante);
+            Assert.AreEqual("Se ha asignado correctamente el estudiante Richard Sanguino al curso 601", response.Mensaje);
+
+        }
     }
 }
