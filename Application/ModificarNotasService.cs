@@ -1,4 +1,5 @@
 ﻿using Domain.Contracts;
+using Domain.Entidades;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -16,25 +17,37 @@ namespace Application
 
         public ModificarNotasResponse Ejecutar(ModificarNotasRequest request)
         {
-
-            if (request == null)
+            Nota nota = _unitOfWork.NotaRepository.FindFirstOrDefault(x => x.Id == request.CodAsignatura + request.DocEstudiante);
+            if (nota != null)
             {
-
-
-                _unitOfWork.Commit();
-                return new ModificarNotasResponse { Mensaje = $"Se modifico la nota al estudiante {request.DocEstudiante}" };
+                if (!nota.IsNotaValida())
+                {
+                    nota.Id = request.CodAsignatura + request.DocEstudiante;
+                    nota = new Nota(request.NotaUno, request.NotaDos, request.NotaTres, request.NotaCuatro);
+                    _unitOfWork.NotaRepository.Edit(nota);
+                    _unitOfWork.Commit();
+                    return new ModificarNotasResponse { Mensaje = $"Se modifico la nota al estudiante {request.DocEstudiante}" };
+                }
+                else
+                {
+                    return new ModificarNotasResponse { Mensaje = $"Error en las notas" };
+                }
             }
             else
             {
-                return new ModificarNotasResponse { Mensaje = $"El estudiante no exite" };
+                return new ModificarNotasResponse { Mensaje = $"El estudiante no existe" };
             }
         }
     }
 
     public class ModificarNotasRequest
     {
-        public int CodAsignatura { get; set; }
-        public string DocEstudiante { get; set; }
+        public long CodAsignatura { get; set; }
+        public long DocEstudiante { get; set; }
+        public float NotaUno { get; set; }
+        public float NotaDos { get; set; }
+        public float NotaTres { get; set; }
+        public float NotaCuatro { get; set; }
     }
 
     public class ModificarNotasResponse

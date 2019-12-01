@@ -21,12 +21,15 @@ namespace Application
             if (estudiante!=null)
             {
                 Cuota cuota = estudiante.PensionEscolar.ListaCuotas[request.NumeroCuotaAConsultar];
-                return new ConsultarCuotaResponse { Mensaje = $"Cuota Mes: {cuota.MesCuota}" +
+                return new ConsultarCuotaResponse 
+                { 
+                    Mensaje = $"Cuota Mes: {cuota.MesCuota}" +
                     $"Fecha Pago Cuota: {cuota.FechaPagoCuota}" +
                     $"Fecha Limite Pago Cuota: {cuota.FechaLimitePagoCuota}" +
                     $"Valor Cuota:{cuota.ValorCuota}" +
                     $"Valor Total a pagar: {cuota.ValorTotalAPagar}" +
-                    $"Estado Cuota: {cuota.EstadoCuota}" };
+                    $"Estado Cuota: {cuota.EstadoCuota}" 
+                };
             }
             else
             {

@@ -1,4 +1,5 @@
 ﻿using Domain.Contracts;
+using Domain.Entidades;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -16,17 +17,27 @@ namespace Application
 
         public ConsultarDocenteResponse Ejecutar(ConsultarDocenteRequest request)
         {
-
-            if (request == null)
+            Docente docente = _unitOfWork.DocenteRepository.FindFirstOrDefault(x => x.Id == request.DocConsultar);
+            if (docente != null)
             {
-
-
-                _unitOfWork.Commit();
-                return new ConsultarDocenteResponse { Mensaje = $"el docente  con documento {request.DocConsultar} imparte la asignatura " };
+                return new ConsultarDocenteResponse 
+                { 
+                    Mensaje = $"Tipo documento: {docente.TipoDocumento}" +
+                    $"Id: {docente.Id}" +
+                    $"Nombre: {docente.PrimerNombre} {docente.SegundoNombre}" + 
+                    $"Apellido: {docente.PrimerApellido} {docente.SegundoApellido}" + 
+                    $"Direccion: {docente.Direccion}" + 
+                    $"Telefono: {docente.Telefono}" + 
+                    $"Sexo: {docente.Sexo}" + 
+                    $"Edad: {docente.Edad}" + 
+                    $"Años de experiencia: {docente.AñosExperiencia}" + 
+                    $"Estrato: {docente.EstratoSocial}" + 
+                    $"Correo electronico: {docente.CorreoElectronico}" 
+                };
             }
             else
             {
-                return new ConsultarDocenteResponse { Mensaje = $"El número de documento no exite" };
+                return new ConsultarDocenteResponse { Mensaje = $"El número de documento no existe" };
             }
         }
     }
