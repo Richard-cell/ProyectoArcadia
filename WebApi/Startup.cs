@@ -39,14 +39,14 @@ namespace WebApi
                 c.SwaggerDoc("v1", new OpenApiInfo
                 {
                     Version = "v1",
-                    Title = "Task API",
-                    Description = "Task API - ASP.NET Core Web API",
+                    Title = "Colegio API",
+                    Description = "colegio API - ASP.NET Core Web API",
                     TermsOfService = new Uri("https://cla.dotnetfoundation.org/"),
                     Contact = new OpenApiContact
                     {
                         Name = "Unicesar",
                         Email = string.Empty,
-                        Url = new Uri("https://github.com/borisgr04/CrudNgDotNetCore3"),
+                        Url = new Uri("https://github.com/Richard-cell/ProyectoArcadia/"),
                     },
                     License = new OpenApiLicense
                     {
@@ -74,7 +74,7 @@ namespace WebApi
             app.UseSwaggerUI(
                 options =>
                 {
-                    options.SwaggerEndpoint("/swagger/v1/swagger.json", "Signus Prespuesto v1");
+                    options.SwaggerEndpoint("/swagger/v1/swagger.json", "API de colegio Arcadia  v1");
                 }
             );
 

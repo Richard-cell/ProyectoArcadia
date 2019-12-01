@@ -56,14 +56,14 @@ namespace Application
 
     public class RegistrarDocenteRequest
     {
+        public string TipoDocumento { get; set; }
         public long DocumentoIdentidad { get; set; }
         public string PrimerNombre { get; set; }
         public string SegundoNombre { get; set; }
         public string PrimerApellido { get; set; }
         public string SegundoApellido { get; set; }
-        public string TipoDocumento { get; set; }
         public char Sexo { get; set; }
-        public int Telefono { get; set; }
+        public long Telefono { get; set; }
         public int Estrato { get; set; }
         public string Direccion { get; set; }
         public string Email { get; set; }
