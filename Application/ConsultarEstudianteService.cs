@@ -50,7 +50,7 @@ namespace Application
 
     public class ConsultarEstudianteRequest
     {
-        public int IdConsultar { get; set; }
+        public long IdConsultar { get; set; }
     }
 
     public class ConsultarEstudianteResponse

@@ -31,14 +31,14 @@ namespace Application
             }
             else
             {
-                return new ConsultarMatriculaResponse { Mensaje = $"El curso no existe" };
+                return new ConsultarMatriculaResponse { Mensaje = $"La matricula no existe" };
             }
         }
     }
 
     public class ConsultarMatriculaRequest
     {
-        public int IdConsultar { get; set; }
+        public long IdConsultar { get; set; }
     }
 
     public class ConsultarMatriculaResponse

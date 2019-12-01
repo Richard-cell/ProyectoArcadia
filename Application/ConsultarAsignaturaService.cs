@@ -35,7 +35,7 @@ namespace Application
 
     public class ConsultarAsignaturaRequest
     {
-        public int IdConsultar { get; set; }
+        public long IdConsultar { get; set; }
     }
 
     public class ConsultarAsignaturaResponse

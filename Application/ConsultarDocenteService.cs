@@ -44,7 +44,7 @@ namespace Application
 
     public class ConsultarDocenteRequest
     {
-        public int DocConsultar { get; set; }
+        public long DocConsultar { get; set; }
     }
 
     public class ConsultarDocenteResponse
