@@ -17,6 +17,8 @@ namespace DomainTest
         public void CalcularPromedioCorrecto()
         {
             Nota nota = new Nota(
+                1001,
+                1001,
                 4f,
                 2.5f,
                 3.0f,
@@ -29,6 +31,8 @@ namespace DomainTest
         public void ValidarDatosNotasCorrectos()
         {
             Nota nota = new Nota(
+                1001,
+                1001,
                 -4f,
                 2.5f,
                 3.0f,

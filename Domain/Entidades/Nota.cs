@@ -20,13 +20,14 @@ namespace Domain.Entidades
         {
         }
 
-        public Nota(float notaPrimerPeriodo, float notaSegundoPeriodo, float notaTercerPeriodo, float notaCuartoPeriodo)
+        public Nota(long codigoNota,long codigoAsignatura,float notaPrimerPeriodo, float notaSegundoPeriodo, float notaTercerPeriodo, float notaCuartoPeriodo)
         {
-            Id = AsignaturaId + EstudianteId;
+            Id = codigoNota;
             NotaPrimerPeriodo = notaPrimerPeriodo;
             NotaSegundoPeriodo = notaSegundoPeriodo;
             NotaTercerPeriodo = notaTercerPeriodo;
             NotaCuartoPeriodo = notaCuartoPeriodo;
+            AsignaturaId = codigoAsignatura;
             CalcularPromedio();
         }
 
