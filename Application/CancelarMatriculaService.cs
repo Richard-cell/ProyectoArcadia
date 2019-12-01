@@ -33,7 +33,7 @@ namespace Application
             }
             else
             {
-                return new CancelarMatriculaResponse { Mensaje = $"El codigo de matricula no exite" };
+                return new CancelarMatriculaResponse { Mensaje = $"El codigo de matricula no existe" };
             }
         }
     }

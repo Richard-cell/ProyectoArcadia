@@ -1,4 +1,5 @@
 ﻿using Domain.Contracts;
+using Domain.Entidades;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -16,8 +17,8 @@ namespace Application
 
         public ModificarDocenteResponse Ejecutar(ModificarDocenteRequest request)
         {
-
-            if (request == null)
+            Docente docente = _unitOfWork.DocenteRepository.FindFirstOrDefault(x => x.Id == request.DocumentoId);
+            if (docente != null)
             {
 
 
@@ -26,14 +27,14 @@ namespace Application
             }
             else
             {
-                return new ModificarDocenteResponse { Mensaje = $"El número de documento no exite" };
+                return new ModificarDocenteResponse { Mensaje = $"El número de documento no existe" };
             }
         }
     }
 
     public class ModificarDocenteRequest
     {
-        public int DocumentoId { get; set; }
+        public long DocumentoId { get; set; }
     }
 
     public class ModificarDocenteResponse
