@@ -15,29 +15,29 @@ namespace Application
             _unitOfWork = unitOfWork;
         }
 
-        public ModificarNotasResponse Ejecutar(ModificarNotasRequest request)
-        {
-            Nota nota = _unitOfWork.NotaRepository.FindFirstOrDefault(x => x.Id == request.CodAsignatura + request.DocEstudiante);
-            if (nota != null)
-            {
-                if (!nota.IsNotaValida())
-                {
-                    nota.Id = request.CodAsignatura + request.DocEstudiante;
-                    nota = new Nota(request.NotaUno, request.NotaDos, request.NotaTres, request.NotaCuatro);
-                    _unitOfWork.NotaRepository.Edit(nota);
-                    _unitOfWork.Commit();
-                    return new ModificarNotasResponse { Mensaje = $"Se modifico la nota al estudiante {request.DocEstudiante}" };
-                }
-                else
-                {
-                    return new ModificarNotasResponse { Mensaje = $"Error en las notas" };
-                }
-            }
-            else
-            {
-                return new ModificarNotasResponse { Mensaje = $"El estudiante no existe" };
-            }
-        }
+        //public ModificarNotasResponse Ejecutar(ModificarNotasRequest request)
+        //{
+        //    Nota nota = _unitOfWork.NotaRepository.FindFirstOrDefault(x => x.Id == request.CodAsignatura + request.DocEstudiante);
+        //    if (nota != null)
+        //    {
+        //        if (!nota.IsNotaValida())
+        //        {
+        //            nota.Id = request.CodAsignatura + request.DocEstudiante;
+        //            nota = new Nota(request.NotaUno, request.NotaDos, request.NotaTres, request.NotaCuatro);
+        //            _unitOfWork.NotaRepository.Edit(nota);
+        //            _unitOfWork.Commit();
+        //            return new ModificarNotasResponse { Mensaje = $"Se modifico la nota al estudiante {request.DocEstudiante}" };
+        //        }
+        //        else
+        //        {
+        //            return new ModificarNotasResponse { Mensaje = $"Error en las notas" };
+        //        }
+        //    }
+        //    else
+        //    {
+        //        return new ModificarNotasResponse { Mensaje = $"El estudiante no existe" };
+        //    }
+        //}
     }
 
     public class ModificarNotasRequest

@@ -11,7 +11,7 @@ namespace WebApi.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class AsignaturaController
+    public class AsignaturaController: ControllerBase
     {
         readonly ColegioContext _context;
         readonly IUnitOfWork _unitOfWork;

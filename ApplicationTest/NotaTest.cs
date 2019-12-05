@@ -99,7 +99,7 @@ namespace ApplicationTest
                 LugarEntreHermanosEstudiante = 2,
                 SeguroSocialEstudiante = "Si tiene",
                 PuntajeSisbenEstudiante = 12.5f,
-                NumeroIdentificacionAcudiente = 106842658,
+                NumeroIdentificacionAcudiente = 106842657,
                 TipoDocumentoAcudiente = "CC",
                 PrimerNombreAcudiente = "Richard",
                 SegundoNombreAcudiente = "Jose",
