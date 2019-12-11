@@ -29,7 +29,7 @@ namespace Application
                         nota = _unitOfWork.NotaRepository.FindFirstOrDefault(x => x.EstudianteId == estudiante.Id);
                         if (nota==null)
                         {
-                            nota = new Nota(ConcatenarNumeros(estudiante.Id,asignatura.Id),asignatura.Id,0,0,0,0);
+                            nota = new Nota(ConcatenarNumeros(estudiante.Id,asignatura.Id),asignatura,0,0,0,0);
                             estudiante.ListaNotas.Add(nota);
                             _unitOfWork.EstudianteRepository.Edit(estudiante);
                             _unitOfWork.Commit();

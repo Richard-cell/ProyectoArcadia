@@ -4,14 +4,16 @@ using Infraestructure.Contextos;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Infraestructure.Migrations
 {
     [DbContext(typeof(ColegioContext))]
-    partial class ColegioContextModelSnapshot : ModelSnapshot
+    [Migration("20191211013812_MigracionInical2")]
+    partial class MigracionInical2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -329,7 +331,7 @@ namespace Infraestructure.Migrations
                     b.Property<long>("Id")
                         .HasColumnType("bigint");
 
-                    b.Property<long?>("AsignaturaId")
+                    b.Property<long>("AsignaturaId")
                         .HasColumnType("bigint");
 
                     b.Property<long?>("BoletinId")
@@ -442,9 +444,11 @@ namespace Infraestructure.Migrations
 
             modelBuilder.Entity("Domain.Entidades.Nota", b =>
                 {
-                    b.HasOne("Domain.Entidades.Asignatura", "Asignatura")
-                        .WithMany()
-                        .HasForeignKey("AsignaturaId");
+                    b.HasOne("Domain.Entidades.Asignatura", null)
+                        .WithMany("ListaNotas")
+                        .HasForeignKey("AsignaturaId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("Domain.Entidades.Boletin", null)
                         .WithMany("ListaNotas")

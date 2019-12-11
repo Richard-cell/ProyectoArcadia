@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Infraestructure.Migrations
 {
     [DbContext(typeof(ColegioContext))]
-    [Migration("20191124154023_InitialCreate")]
-    partial class InitialCreate
+    [Migration("20191211015719_Migracion3")]
+    partial class Migracion3
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -34,9 +34,6 @@ namespace Infraestructure.Migrations
 
                     b.Property<int>("EstratoSocial")
                         .HasColumnType("int");
-
-                    b.Property<long>("EstudianteId")
-                        .HasColumnType("bigint");
 
                     b.Property<string>("Parentezco")
                         .HasColumnType("nvarchar(max)");
@@ -64,9 +61,6 @@ namespace Infraestructure.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("EstudianteId")
-                        .IsUnique();
 
                     b.ToTable("Acudiente");
                 });
@@ -236,6 +230,9 @@ namespace Infraestructure.Migrations
                     b.Property<long>("Id")
                         .HasColumnType("bigint");
 
+                    b.Property<long>("AcudienteId")
+                        .HasColumnType("bigint");
+
                     b.Property<string>("CorreoElectronico")
                         .HasColumnType("nvarchar(max)");
 
@@ -296,6 +293,9 @@ namespace Infraestructure.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("AcudienteId")
+                        .IsUnique();
+
                     b.HasIndex("CursoId");
 
                     b.HasIndex("MatriculaId")
@@ -331,7 +331,7 @@ namespace Infraestructure.Migrations
                     b.Property<long>("Id")
                         .HasColumnType("bigint");
 
-                    b.Property<long>("AsignaturaId")
+                    b.Property<long?>("AsignaturaId")
                         .HasColumnType("bigint");
 
                     b.Property<long?>("BoletinId")
@@ -388,15 +388,6 @@ namespace Infraestructure.Migrations
                     b.ToTable("PensionEscolar");
                 });
 
-            modelBuilder.Entity("Domain.Entidades.Acudiente", b =>
-                {
-                    b.HasOne("Domain.Entidades.Estudiante", null)
-                        .WithOne("RepresentanteLegal")
-                        .HasForeignKey("Domain.Entidades.Acudiente", "EstudianteId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
             modelBuilder.Entity("Domain.Entidades.Cuota", b =>
                 {
                     b.HasOne("Domain.Entidades.PensionEscolar", null)
@@ -434,6 +425,12 @@ namespace Infraestructure.Migrations
 
             modelBuilder.Entity("Domain.Entidades.Estudiante", b =>
                 {
+                    b.HasOne("Domain.Entidades.Acudiente", null)
+                        .WithOne("Estudiante")
+                        .HasForeignKey("Domain.Entidades.Estudiante", "AcudienteId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("Domain.Entidades.Curso", null)
                         .WithMany("ListaEstudiantes")
                         .HasForeignKey("CursoId");
@@ -447,11 +444,9 @@ namespace Infraestructure.Migrations
 
             modelBuilder.Entity("Domain.Entidades.Nota", b =>
                 {
-                    b.HasOne("Domain.Entidades.Asignatura", null)
-                        .WithMany("ListaNotas")
-                        .HasForeignKey("AsignaturaId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                    b.HasOne("Domain.Entidades.Asignatura", "Asignatura")
+                        .WithMany()
+                        .HasForeignKey("AsignaturaId");
 
                     b.HasOne("Domain.Entidades.Boletin", null)
                         .WithMany("ListaNotas")

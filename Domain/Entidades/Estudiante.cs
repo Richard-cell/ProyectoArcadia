@@ -17,7 +17,7 @@ namespace Domain.Entidades
         public float PuntajeSisben { get; private set; }
         public long MatriculaId { get; private set; }
         public long? CursoId { get; private set; }
-        public Acudiente RepresentanteLegal { get; private set; }
+        public long AcudienteId { get; private set; }
         public PensionEscolar PensionEscolar { get; private set; }
         public List<Nota> ListaNotas { get; set; }
 
@@ -25,7 +25,7 @@ namespace Domain.Entidades
         {
         }
 
-        public Estudiante(string tipoDocumento, long numeroIdentificacion, string primerNombre, string segundoNombre, string primerApellido, string segundoApellido, string direccion, long telefono, string lugarNacimiento, DateTime fechaNacimiento, string rH, int numeroHermanos, int lugarEntreHermanos, string seguroSocial, int estratoSocial, float puntajeSisben, Acudiente representanteLegal, char sexo, string correoElectronico,PensionEscolar pensionEscolar) :base(tipoDocumento,primerNombre,segundoNombre,primerApellido,segundoApellido,direccion,telefono, sexo, estratoSocial, correoElectronico)
+        public Estudiante(string tipoDocumento, long numeroIdentificacion, string primerNombre, string segundoNombre, string primerApellido, string segundoApellido, string direccion, long telefono, string lugarNacimiento, DateTime fechaNacimiento, string rH, int numeroHermanos, int lugarEntreHermanos, string seguroSocial, int estratoSocial, float puntajeSisben, char sexo, string correoElectronico,PensionEscolar pensionEscolar) :base(tipoDocumento,primerNombre,segundoNombre,primerApellido,segundoApellido,direccion,telefono, sexo, estratoSocial, correoElectronico)
         {
             Id = numeroIdentificacion;
             LugarNacimiento = lugarNacimiento;
@@ -35,7 +35,6 @@ namespace Domain.Entidades
             LugarEntreHermanos = lugarEntreHermanos;
             SeguroSocial = seguroSocial;
             PuntajeSisben = puntajeSisben;
-            RepresentanteLegal = representanteLegal;
             PensionEscolar = pensionEscolar;
             ListaNotas = new List<Nota>();
             AlmacenarRHValidos();

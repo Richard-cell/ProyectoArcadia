@@ -15,29 +15,16 @@ namespace DomainTest
         [SetUp]
         public void Setup()
         {
-            representanteLegal = new Acudiente(
-                "Madre",
-                "C.C",
-                1065842658,
-                "Alba",
-                "Nerina",
-                "Ramirez",
-                "Gil",
-                "Calle 31#28-17",
-                3154177696,
-                'F',
-                1,
-                "aldanerina@gmail.com"
-                );
-
             pensionEscolar = new PensionEscolar(
                 9019,
                 new DateTime(2019,05,05)
                 );
-
+            Asignatura asignatura = new Asignatura(101, "calculo");
+            Asignatura asignatura2 = new Asignatura(102, "español");
+            
             listaNotas = new List<Nota>();
-            Nota notaUno = new Nota(1001, 1001, 4f, 3f, 2.5f, 2.8f);
-            Nota notaDos = new Nota(1002, 1002, 5f, 3f, 2.5f, 3.8f);
+            Nota notaUno = new Nota(1001, asignatura, 4f, 3f, 2.5f, 2.8f);
+            Nota notaDos = new Nota(1002, asignatura2, 5f, 3f, 2.5f, 3.8f);
             listaNotas.Add(notaUno);
             listaNotas.Add(notaDos);
         }
@@ -62,7 +49,6 @@ namespace DomainTest
                 "SI",
                 2,
                 32.7f,
-                representanteLegal,
                 'M',
                 "anuarsanguino@gmail.com",
                 pensionEscolar
@@ -91,7 +77,6 @@ namespace DomainTest
                 "SI",
                 2,
                 32.7f,
-                representanteLegal,
                 'M',
                 "anuarsanguino@gmail.com",
                 pensionEscolar
