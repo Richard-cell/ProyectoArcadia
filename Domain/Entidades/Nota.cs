@@ -12,7 +12,7 @@ namespace Domain.Entidades
         public float NotaTercerPeriodo { get; private set; }
         public float NotaCuartoPeriodo { get; private set; }
         public float PromedioNota { get; private set; }
-        public long AsignaturaId { get; private set; }
+        public Asignatura Asignatura { get; private set; }
         public long? BoletinId { get; private set; }
         public long EstudianteId { get; private set; }
 
@@ -20,14 +20,14 @@ namespace Domain.Entidades
         {
         }
 
-        public Nota(long codigoNota,long codigoAsignatura,float notaPrimerPeriodo, float notaSegundoPeriodo, float notaTercerPeriodo, float notaCuartoPeriodo)
+        public Nota(long codigoNota,Asignatura asignatura,float notaPrimerPeriodo, float notaSegundoPeriodo, float notaTercerPeriodo, float notaCuartoPeriodo)
         {
             Id = codigoNota;
             NotaPrimerPeriodo = notaPrimerPeriodo;
             NotaSegundoPeriodo = notaSegundoPeriodo;
             NotaTercerPeriodo = notaTercerPeriodo;
             NotaCuartoPeriodo = notaCuartoPeriodo;
-            AsignaturaId = codigoAsignatura;
+            Asignatura = asignatura;
             CalcularPromedio();
         }
 

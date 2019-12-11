@@ -4,14 +4,16 @@ using Infraestructure.Contextos;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Infraestructure.Migrations
 {
     [DbContext(typeof(ColegioContext))]
-    partial class ColegioContextModelSnapshot : ModelSnapshot
+    [Migration("20191211015013_Migracion2")]
+    partial class Migracion2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -329,7 +331,7 @@ namespace Infraestructure.Migrations
                     b.Property<long>("Id")
                         .HasColumnType("bigint");
 
-                    b.Property<long?>("AsignaturaId")
+                    b.Property<long>("AsignaturaId")
                         .HasColumnType("bigint");
 
                     b.Property<long?>("BoletinId")
@@ -354,8 +356,6 @@ namespace Infraestructure.Migrations
                         .HasColumnType("real");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("AsignaturaId");
 
                     b.HasIndex("BoletinId");
 
@@ -442,10 +442,6 @@ namespace Infraestructure.Migrations
 
             modelBuilder.Entity("Domain.Entidades.Nota", b =>
                 {
-                    b.HasOne("Domain.Entidades.Asignatura", "Asignatura")
-                        .WithMany()
-                        .HasForeignKey("AsignaturaId");
-
                     b.HasOne("Domain.Entidades.Boletin", null)
                         .WithMany("ListaNotas")
                         .HasForeignKey("BoletinId");
