@@ -20,7 +20,7 @@ namespace Application
             Asignatura asignatura = _unitOfWork.AsignaturaRepository.FindFirstOrDefault(x => x.Id == request.IdAsignaturaConsultar);
             if (asignatura != null)
             {
-                Nota nota = _unitOfWork.NotaRepository.FindFirstOrDefault(x => x.Id == request.IdAsignaturaConsultar + request.DocEstudiante);
+                Nota nota = _unitOfWork.NotaRepository.FindFirstOrDefault(x => x.Id == ConcatenarNumeros(request.DocEstudiante,request.IdAsignaturaConsultar));
                 if (nota != null)
                 {
                     return new ConsultarNotaResponse
@@ -44,6 +44,12 @@ namespace Application
             {
                 return new ConsultarNotaResponse { Mensaje = $"La asignatura no existe" };
             }
+        }
+
+        private long ConcatenarNumeros(long numero, long numero2)
+        {
+            string numeroFinal = numero.ToString() + numero2.ToString();
+            return long.Parse(numeroFinal);
         }
     }
 
