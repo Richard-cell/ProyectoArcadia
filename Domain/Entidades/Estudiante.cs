@@ -8,17 +8,17 @@ namespace Domain.Entidades
     public class Estudiante: Persona<long>
     {
         private static List<string> _listaRH;
-        public string LugarNacimiento { get; private set; }
-        public DateTime FechaNacimiento { get; private set; }
-        public string RH { get; private set; }
-        public int NumeroHermanos { get; private set; }
-        public int LugarEntreHermanos { get; private set; }
-        public string SeguroSocial { get; private set; }
-        public float PuntajeSisben { get; private set; }
-        public long MatriculaId { get; private set; }
-        public long? CursoId { get; private set; }
-        public long AcudienteId { get; private set; }
-        public PensionEscolar PensionEscolar { get; private set; }
+        public string LugarNacimiento { get;  set; }
+        public DateTime FechaNacimiento { get;  set; }
+        public string RH { get;  set; }
+        public int NumeroHermanos { get;  set; }
+        public int LugarEntreHermanos { get;  set; }
+        public string SeguroSocial { get;  set; }
+        public float PuntajeSisben { get;  set; }
+        public long MatriculaId { get;  set; }
+        public long? CursoId { get;  set; }
+        public long AcudienteId { get;  set; }
+        public PensionEscolar PensionEscolar { get;  set; }
         public List<Nota> ListaNotas { get; set; }
 
         public Estudiante()

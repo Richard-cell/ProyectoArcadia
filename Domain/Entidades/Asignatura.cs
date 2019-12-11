@@ -7,8 +7,8 @@ namespace Domain.Entidades
 {
     public class Asignatura: Entity<long>
     {
-        public string NombreAsignatura { get; private set; }
-        public List<DocenteAsignatura> ListaDocenteAsignaturas { get; private set; }
+        public string NombreAsignatura { get; set; }
+        public List<DocenteAsignatura> ListaDocenteAsignaturas { get; set; }
         public Asignatura()
         {
         }

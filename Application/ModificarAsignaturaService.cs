@@ -20,10 +20,10 @@ namespace Application
             Asignatura asignatura = _unitOfWork.AsignaturaRepository.FindFirstOrDefault(x => x.Id == request.IdAsignatura);
             if (asignatura != null)
             {
-                //asignatura.NombreAsignatura = request.Nombre;
-                //_unitOfWork.AsignaturaRepository.Edit(asignatura);
-                //_unitOfWork.Commit();
-                return new ModificarAsignaturaResponse { Mensaje = $"Se modifico la informacion de la asignatura" };
+                asignatura.NombreAsignatura = request.Nombre;
+                _unitOfWork.AsignaturaRepository.Edit(asignatura);
+                _unitOfWork.Commit();
+                return new ModificarAsignaturaResponse { Mensaje = $"Se modifico el nombre de la asignatura" };
             }
             else
             {

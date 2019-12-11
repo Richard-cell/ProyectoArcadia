@@ -7,8 +7,8 @@ namespace Domain.Entidades
 {
     public class Docente: Persona<long>
     {
-        public int Edad { get; private set; }
-        public int AñosExperiencia { get; private set; }
+        public int Edad { get;  set; }
+        public int AñosExperiencia { get;  set; }
         public List<DocenteCurso> ListaDocenteCurso{ get; set; }
         public List<DocenteAsignatura> ListaDocenteAsignaturas { get; set; }
         public Docente()
