@@ -40,7 +40,7 @@ namespace DomainTest
                 3.0f,
                 3.8f
             );
-            Assert.AreEqual(nota.IsNotaValida(), true);
+            Assert.AreEqual(Nota.IsNotaValida(-4,2.5f,3.0f,3.8f), true);
         }
     }
 }
