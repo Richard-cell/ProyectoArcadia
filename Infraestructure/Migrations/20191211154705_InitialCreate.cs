@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Infraestructure.Migrations
 {
-    public partial class MigracionInical2 : Migration
+    public partial class InitialCreate : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -212,7 +212,7 @@ namespace Infraestructure.Migrations
                     NotaTercerPeriodo = table.Column<float>(nullable: false),
                     NotaCuartoPeriodo = table.Column<float>(nullable: false),
                     PromedioNota = table.Column<float>(nullable: false),
-                    AsignaturaId = table.Column<long>(nullable: false),
+                    AsignaturaId = table.Column<long>(nullable: true),
                     BoletinId = table.Column<long>(nullable: true),
                     EstudianteId = table.Column<long>(nullable: false)
                 },
@@ -224,7 +224,7 @@ namespace Infraestructure.Migrations
                         column: x => x.AsignaturaId,
                         principalTable: "Asignatura",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_Nota_Boletin_BoletinId",
                         column: x => x.BoletinId,

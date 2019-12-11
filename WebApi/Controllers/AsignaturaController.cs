@@ -46,5 +46,13 @@ namespace WebApi.Controllers
             AsignarDocenteAsignaturaResponse response = _service.Ejecutar(request);
             return Ok(response);
         }
+
+        [HttpPut]
+        public ActionResult<ModificarAsignaturaResponse> Put(ModificarAsignaturaRequest request)
+        {
+            ModificarAsignaturaService _service = new ModificarAsignaturaService(_unitOfWork);
+            ModificarAsignaturaResponse response = _service.Ejecutar(request);
+            return Ok(response);
+        }
     }
 }

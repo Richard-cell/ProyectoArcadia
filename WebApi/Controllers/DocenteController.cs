@@ -38,5 +38,13 @@ namespace WebApi.Controllers
             ConsultarDocenteResponse response = service.Ejecutar(new ConsultarDocenteRequest { DocConsultar = id });
             return Ok(response);
         }
+
+        [HttpPut]
+        public ActionResult<ModificarDocenteResponse> Put(ModificarDocenteRequest request)
+        {
+            ModificarDocenteService service = new ModificarDocenteService(_unitOfWork);
+            ModificarDocenteResponse response = service.Ejecutar(request);
+            return Ok(response);
+        }
     }
 }
