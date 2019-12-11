@@ -23,13 +23,13 @@ namespace WebApi.Controllers
             _context = context;
         }
 
-        //[HttpPost]
-        //public ActionResult<RealizarMatriculaResponse> Post(RealizarMatriculaRequest request)
-        //{
-        //    RealizarMatriculaService service = new RealizarMatriculaService(_unitOfWork);
-        //    RealizarMatriculaResponse response = service.Ejecutar(request);
-        //    return Ok(response);
-        //}
+        [HttpPost]
+        public ActionResult<CrearRegistroNotaEstudianteResponse> Post(CrearRegistroNotaEstudianteRequest request)
+        {
+            CrearRegistroNotaEstudianteService service = new CrearRegistroNotaEstudianteService(_unitOfWork);
+            CrearRegistroNotaEstudianteResponse response = service.Ejecutar(request);
+            return Ok(response);
+        }
 
         [HttpGet("ConsultarNota/{id}")]
         public ActionResult<ConsultarNotaResponse> Get(long idAsignatura, long idEstudiante)
