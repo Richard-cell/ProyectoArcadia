@@ -34,19 +34,22 @@ namespace WebApi
             services.AddScoped<IUnitOfWork, UnitOfWork>(); //Se Instancia un peticion
             services.AddScoped<IDbContext, ColegioContext>(); //Se Instancia un peticion
             services.AddControllers();
+            
+            #region SwaggerOpen Api
+            //Register the Swagger services
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo
                 {
                     Version = "v1",
-                    Title = "Colegio API",
-                    Description = "colegio API - ASP.NET Core Web API",
+                    Title = "Task API",
+                    Description = "Task API - ASP.NET Core Web API",
                     TermsOfService = new Uri("https://cla.dotnetfoundation.org/"),
                     Contact = new OpenApiContact
                     {
                         Name = "Unicesar",
                         Email = string.Empty,
-                        Url = new Uri("https://github.com/Richard-cell/ProyectoArcadia/"),
+                        Url = new Uri("https://github.com/borisgr04/CrudNgDotNetCore3"),
                     },
                     License = new OpenApiLicense
                     {
@@ -55,6 +58,8 @@ namespace WebApi
                     }
                 });
             });
+
+            #endregion
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -70,13 +75,16 @@ namespace WebApi
             app.UseRouting();
 
             app.UseAuthorization();
+
+            #region Activar SwaggerUI
             app.UseSwagger();
             app.UseSwaggerUI(
                 options =>
                 {
-                    options.SwaggerEndpoint("/swagger/v1/swagger.json", "API de colegio Arcadia  v1");
+                    options.SwaggerEndpoint("/swagger/v1/swagger.json", "Signus Prespuesto v1");
                 }
             );
+            #endregion
 
             app.UseEndpoints(endpoints =>
             {

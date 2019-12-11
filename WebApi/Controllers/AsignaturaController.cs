@@ -38,5 +38,13 @@ namespace WebApi.Controllers
             ConsultarAsignaturaResponse response = service.Ejecutar(new ConsultarAsignaturaRequest { IdConsultar = id });
             return Ok(response);
         }
+
+        [HttpPost]
+        public ActionResult<AsignarDocenteAsignaturaResponse> Post(AsignarDocenteAsignaturaRequest request)
+        {
+            AsignarDocenteAsignaturaService _service = new AsignarDocenteAsignaturaService(_unitOfWork);
+            AsignarDocenteAsignaturaResponse response = _service.Ejecutar(request);
+            return Ok(response);
+        }
     }
 }
