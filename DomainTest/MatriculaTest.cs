@@ -37,7 +37,6 @@ namespace DomainTest
                 "SI",
                 2,
                 32.7f,
-                representanteLegal,
                 'M',
                 "anuarsanguino@gmail.com",
                 pensionEscolar

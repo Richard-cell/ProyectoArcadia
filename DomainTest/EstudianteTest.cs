@@ -15,21 +15,6 @@ namespace DomainTest
         [SetUp]
         public void Setup()
         {
-            representanteLegal = new Acudiente(
-                "Madre",
-                "C.C",
-                1065842658,
-                "Alba",
-                "Nerina",
-                "Ramirez",
-                "Gil",
-                "Calle 31#28-17",
-                3154177696,
-                'F',
-                1,
-                "aldanerina@gmail.com"
-                );
-
             pensionEscolar = new PensionEscolar(
                 9019,
                 new DateTime(2019,05,05)
@@ -62,7 +47,6 @@ namespace DomainTest
                 "SI",
                 2,
                 32.7f,
-                representanteLegal,
                 'M',
                 "anuarsanguino@gmail.com",
                 pensionEscolar
@@ -91,7 +75,6 @@ namespace DomainTest
                 "SI",
                 2,
                 32.7f,
-                representanteLegal,
                 'M',
                 "anuarsanguino@gmail.com",
                 pensionEscolar

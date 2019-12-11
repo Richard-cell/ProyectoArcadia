@@ -3,10 +3,32 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Infraestructure.Migrations
 {
-    public partial class InitialCreate : Migration
+    public partial class MigracionInical2 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.CreateTable(
+                name: "Acudiente",
+                columns: table => new
+                {
+                    Id = table.Column<long>(nullable: false),
+                    TipoDocumento = table.Column<string>(nullable: true),
+                    PrimerNombre = table.Column<string>(nullable: true),
+                    SegundoNombre = table.Column<string>(nullable: true),
+                    PrimerApellido = table.Column<string>(nullable: true),
+                    SegundoApellido = table.Column<string>(nullable: true),
+                    Direccion = table.Column<string>(nullable: true),
+                    Telefono = table.Column<long>(nullable: false),
+                    Sexo = table.Column<string>(nullable: false),
+                    EstratoSocial = table.Column<int>(nullable: false),
+                    CorreoElectronico = table.Column<string>(nullable: true),
+                    Parentezco = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Acudiente", x => x.Id);
+                });
+
             migrationBuilder.CreateTable(
                 name: "Asignatura",
                 columns: table => new
@@ -154,11 +176,18 @@ namespace Infraestructure.Migrations
                     SeguroSocial = table.Column<string>(nullable: true),
                     PuntajeSisben = table.Column<float>(nullable: false),
                     MatriculaId = table.Column<long>(nullable: false),
-                    CursoId = table.Column<long>(nullable: true)
+                    CursoId = table.Column<long>(nullable: true),
+                    AcudienteId = table.Column<long>(nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Estudiante", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Estudiante_Acudiente_AcudienteId",
+                        column: x => x.AcudienteId,
+                        principalTable: "Acudiente",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_Estudiante_Curso_CursoId",
                         column: x => x.CursoId,
@@ -169,35 +198,6 @@ namespace Infraestructure.Migrations
                         name: "FK_Estudiante_Matricula_MatriculaId",
                         column: x => x.MatriculaId,
                         principalTable: "Matricula",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Acudiente",
-                columns: table => new
-                {
-                    Id = table.Column<long>(nullable: false),
-                    TipoDocumento = table.Column<string>(nullable: true),
-                    PrimerNombre = table.Column<string>(nullable: true),
-                    SegundoNombre = table.Column<string>(nullable: true),
-                    PrimerApellido = table.Column<string>(nullable: true),
-                    SegundoApellido = table.Column<string>(nullable: true),
-                    Direccion = table.Column<string>(nullable: true),
-                    Telefono = table.Column<long>(nullable: false),
-                    Sexo = table.Column<string>(nullable: false),
-                    EstratoSocial = table.Column<int>(nullable: false),
-                    CorreoElectronico = table.Column<string>(nullable: true),
-                    Parentezco = table.Column<string>(nullable: true),
-                    EstudianteId = table.Column<long>(nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Acudiente", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Acudiente_Estudiante_EstudianteId",
-                        column: x => x.EstudianteId,
-                        principalTable: "Estudiante",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -285,12 +285,6 @@ namespace Infraestructure.Migrations
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Acudiente_EstudianteId",
-                table: "Acudiente",
-                column: "EstudianteId",
-                unique: true);
-
-            migrationBuilder.CreateIndex(
                 name: "IX_Cuota_PensionEscolarId",
                 table: "Cuota",
                 column: "PensionEscolarId");
@@ -314,6 +308,12 @@ namespace Infraestructure.Migrations
                 name: "IX_DocenteCurso_DocenteId",
                 table: "DocenteCurso",
                 column: "DocenteId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Estudiante_AcudienteId",
+                table: "Estudiante",
+                column: "AcudienteId",
+                unique: true);
 
             migrationBuilder.CreateIndex(
                 name: "IX_Estudiante_CursoId",
@@ -351,9 +351,6 @@ namespace Infraestructure.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Acudiente");
-
-            migrationBuilder.DropTable(
                 name: "Cuota");
 
             migrationBuilder.DropTable(
@@ -379,6 +376,9 @@ namespace Infraestructure.Migrations
 
             migrationBuilder.DropTable(
                 name: "Estudiante");
+
+            migrationBuilder.DropTable(
+                name: "Acudiente");
 
             migrationBuilder.DropTable(
                 name: "Curso");

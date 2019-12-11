@@ -28,8 +28,6 @@ namespace Application
                     docente.IsAlmacenarAsignaturasImpartidas(docenteAsignatura);
                     _unitOfWork.DocenteRepository.Edit(docente);
                     _unitOfWork.Commit();
-                    //_unitOfWork.DocenteAsignaturaRepository.Add(docenteAsignatura);
-                    //_unitOfWork.Commit();
                     return new AsignarDocenteAsignaturaResponse { Mensaje = $"Se le asigno al docente {docente.PrimerNombre} correctamente la asignatura de {asignatura.NombreAsignatura}" };
                 }
                 else

@@ -63,7 +63,6 @@ namespace Application
                 request.SeguroSocialEstudiante,
                 request.EstratoSocialEstudiante,
                 request.PuntajeSisbenEstudiante,
-                AlmacenarAcudiente(request),
                 request.SexoEstudiante,
                 request.CorreoElectronicoEstudiante,
                 AlmacenarPensionEscolar(ConcatenarNumeros(request.NumeroIdentificacionEstudiante),request.FechaMatricula)

@@ -36,10 +36,10 @@ namespace Application
                     $"seguro social: {estudiante.SeguroSocial}" +
                     $"Estrato: {estudiante.EstratoSocial}" +
                     $"Puntaje sisben: {estudiante.PuntajeSisben}" +
-                    $"Representate legal: {estudiante.RepresentanteLegal}" +
+                    // $"Representate legal: {estudiante.RepresentanteLegal}" +
                     $"Sexo: {estudiante.Sexo}" +
                     $"Correo electronico: {estudiante.CorreoElectronico}"
-                };
+                }; 
             }
             else
             {
