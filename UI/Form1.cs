@@ -64,5 +64,23 @@ namespace UI
             FormModificarNota form = new FormModificarNota();
             form.ShowDialog();
         }
+
+        private void asignarDocenteToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FormAsignarDocenteAsignatura form = new FormAsignarDocenteAsignatura();
+            form.ShowDialog();
+        }
+
+        private void asignarEstudianteToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FormAsignarEstudianteCurso form = new FormAsignarEstudianteCurso();
+            form.ShowDialog();
+        }
+
+        private void asignarDocenteToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            FormAsignarDocenteCurso form = new FormAsignarDocenteCurso();
+            form.ShowDialog();
+        }
     }
 }

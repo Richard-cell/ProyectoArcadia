@@ -40,13 +40,13 @@
             this.ingresarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.asignaturaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.registrarToolStripMenuItem3 = new System.Windows.Forms.ToolStripMenuItem();
+            this.asignarDocenteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cursoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.registrarToolStripMenuItem4 = new System.Windows.Forms.ToolStripMenuItem();
-            this.pensionEscolarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.pagarCuotaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.asignarDocenteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.asignarDocenteToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.asignarEstudianteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.pensionEscolarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.pagarCuotaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -151,6 +151,13 @@
             this.registrarToolStripMenuItem3.Text = "Registrar";
             this.registrarToolStripMenuItem3.Click += new System.EventHandler(this.registrarToolStripMenuItem3_Click);
             // 
+            // asignarDocenteToolStripMenuItem
+            // 
+            this.asignarDocenteToolStripMenuItem.Name = "asignarDocenteToolStripMenuItem";
+            this.asignarDocenteToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.asignarDocenteToolStripMenuItem.Text = "Asignar Docente";
+            this.asignarDocenteToolStripMenuItem.Click += new System.EventHandler(this.asignarDocenteToolStripMenuItem_Click);
+            // 
             // cursoToolStripMenuItem
             // 
             this.cursoToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -168,6 +175,20 @@
             this.registrarToolStripMenuItem4.Text = "Registrar";
             this.registrarToolStripMenuItem4.Click += new System.EventHandler(this.registrarToolStripMenuItem4_Click);
             // 
+            // asignarDocenteToolStripMenuItem1
+            // 
+            this.asignarDocenteToolStripMenuItem1.Name = "asignarDocenteToolStripMenuItem1";
+            this.asignarDocenteToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
+            this.asignarDocenteToolStripMenuItem1.Text = "Asignar docente";
+            this.asignarDocenteToolStripMenuItem1.Click += new System.EventHandler(this.asignarDocenteToolStripMenuItem1_Click);
+            // 
+            // asignarEstudianteToolStripMenuItem
+            // 
+            this.asignarEstudianteToolStripMenuItem.Name = "asignarEstudianteToolStripMenuItem";
+            this.asignarEstudianteToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.asignarEstudianteToolStripMenuItem.Text = "Asignar estudiante";
+            this.asignarEstudianteToolStripMenuItem.Click += new System.EventHandler(this.asignarEstudianteToolStripMenuItem_Click);
+            // 
             // pensionEscolarToolStripMenuItem
             // 
             this.pensionEscolarToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -182,24 +203,6 @@
             this.pagarCuotaToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.pagarCuotaToolStripMenuItem.Text = "Pagar cuota";
             this.pagarCuotaToolStripMenuItem.Click += new System.EventHandler(this.pagarCuotaToolStripMenuItem_Click);
-            // 
-            // asignarDocenteToolStripMenuItem
-            // 
-            this.asignarDocenteToolStripMenuItem.Name = "asignarDocenteToolStripMenuItem";
-            this.asignarDocenteToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.asignarDocenteToolStripMenuItem.Text = "Asignar Docente";
-            // 
-            // asignarDocenteToolStripMenuItem1
-            // 
-            this.asignarDocenteToolStripMenuItem1.Name = "asignarDocenteToolStripMenuItem1";
-            this.asignarDocenteToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
-            this.asignarDocenteToolStripMenuItem1.Text = "Asignar docente";
-            // 
-            // asignarEstudianteToolStripMenuItem
-            // 
-            this.asignarEstudianteToolStripMenuItem.Name = "asignarEstudianteToolStripMenuItem";
-            this.asignarEstudianteToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.asignarEstudianteToolStripMenuItem.Text = "Asignar estudiante";
             // 
             // Form1
             // 
