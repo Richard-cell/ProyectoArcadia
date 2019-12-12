@@ -23,7 +23,7 @@ namespace WebAppiV2.Controllers
             _context = context;
         }
 
-        [HttpPost("Registrar Curso")]
+        [HttpPost("RegistrarCurso")]
         public ActionResult<RegistrarCursoResponse> Post(RegistrarCursoRequest request)
         {
             RegistrarCursoService _service = new RegistrarCursoService(_unitOfWork);
