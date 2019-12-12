@@ -27,7 +27,7 @@ namespace Application
                     $"Fecha Pago Cuota: {cuota.FechaPagoCuota}" +
                     $"Fecha Limite Pago Cuota: {cuota.FechaLimitePagoCuota}" +
                     $"Valor Cuota:{cuota.ValorCuota}" +
-                    $"Valor Total a pagar: {cuota.ValorTotalAPagar}" +
+                    $"Valor Total a pagar:{cuota.ValorTotalAPagar}" +
                     $"Estado Cuota: {cuota.EstadoCuota}" 
                 };
             }

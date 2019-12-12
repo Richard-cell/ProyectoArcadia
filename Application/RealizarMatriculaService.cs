@@ -18,6 +18,7 @@ namespace Application
         public RealizarMatriculaResponse Ejecutar(RealizarMatriculaRequest request)
         {
            Matricula matricula = _unitOfWork.MatriculaRepository.FindFirstOrDefault(t => t.Id == request.CodigoMatricula);
+            Acudiente acudiente = _unitOfWork.AcudienteRepository.FindFirstOrDefault(t => t.Id == request.NumeroIdentificacionAcudiente); 
             if (matricula == null)
             {
                 if (Matricula.IsValidarNumeroDocumentos(request.NumeroDocumentosAdjuntados)) {
@@ -28,6 +29,10 @@ namespace Application
                         request.NumeroDocumentosAdjuntados,
                         request.EstadoMatricula
                         );
+                    if (acudiente==null) {
+                        acudiente = AlmacenarAcudiente(request);
+                        _unitOfWork.AcudienteRepository.Add(acudiente);
+                    }
                     _unitOfWork.MatriculaRepository.Add(matricula);
                     _unitOfWork.Commit();
                     return new RealizarMatriculaResponse() { Mensaje = $"Se creó con exito la matricula {request.CodigoMatricula}" };
@@ -47,6 +52,7 @@ namespace Application
         private Estudiante AlmacenarEstudiante(RealizarMatriculaRequest request)
         {
             return new Estudiante(
+                AlmacenarAcudiente(request).Id,
                 request.TipoDocumentoEstudiante,
                 request.NumeroIdentificacionEstudiante,
                 request.PrimerNombreEstudiante,

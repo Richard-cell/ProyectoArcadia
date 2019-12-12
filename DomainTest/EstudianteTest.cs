@@ -19,6 +19,22 @@ namespace DomainTest
                 9019,
                 new DateTime(2019,05,05)
                 );
+
+            representanteLegal = new Acudiente(
+                "Padre",
+                "C.C",
+                1065234563,
+                "Alba",
+                "Ramirez",
+                "Ramirez",
+                "Gil",
+                "Calle 31#24-12",
+                3154787847,
+                'F',
+                2,
+                "alba@gmail.com"
+                ); 
+
             Asignatura asignatura = new Asignatura(101, "calculo");
             Asignatura asignatura2 = new Asignatura(102, "español");
             
@@ -33,6 +49,7 @@ namespace DomainTest
         public void RegistroExitosoNotas()
         {
             Estudiante estudiante = new Estudiante(
+                representanteLegal.Id,
                 "TI",
                 1003345637,
                 "Anuar",
@@ -61,6 +78,7 @@ namespace DomainTest
         public void ValidarPromedioNotas()
         {
             Estudiante estudiante = new Estudiante(
+                representanteLegal.Id,
                 "TI",
                 1003345637,
                 "Anuar",

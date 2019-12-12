@@ -20,7 +20,23 @@ namespace DomainTest
                 new DateTime(2019, 03, 05)
                 );
 
+            representanteLegal = new Acudiente(
+                "Padre",
+                "C.C",
+                1065234563,
+                "Alba",
+                "Ramirez",
+                "Ramirez",
+                "Gil",
+                "Calle 31#24-12",
+                3154787847,
+                'F',
+                2,
+                "alba@gmail.com"
+                );
+
             estudiante = new Estudiante(
+                representanteLegal.Id,
                 "TI",
                 1003345637,
                 "Anuar",

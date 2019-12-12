@@ -25,8 +25,9 @@ namespace Domain.Entidades
         {
         }
 
-        public Estudiante(string tipoDocumento, long numeroIdentificacion, string primerNombre, string segundoNombre, string primerApellido, string segundoApellido, string direccion, long telefono, string lugarNacimiento, DateTime fechaNacimiento, string rH, int numeroHermanos, int lugarEntreHermanos, string seguroSocial, int estratoSocial, float puntajeSisben, char sexo, string correoElectronico,PensionEscolar pensionEscolar) :base(tipoDocumento,primerNombre,segundoNombre,primerApellido,segundoApellido,direccion,telefono, sexo, estratoSocial, correoElectronico)
+        public Estudiante(long acudiente,string tipoDocumento, long numeroIdentificacion, string primerNombre, string segundoNombre, string primerApellido, string segundoApellido, string direccion, long telefono, string lugarNacimiento, DateTime fechaNacimiento, string rH, int numeroHermanos, int lugarEntreHermanos, string seguroSocial, int estratoSocial, float puntajeSisben, char sexo, string correoElectronico,PensionEscolar pensionEscolar) :base(tipoDocumento,primerNombre,segundoNombre,primerApellido,segundoApellido,direccion,telefono, sexo, estratoSocial, correoElectronico)
         {
+            AcudienteId = acudiente;
             Id = numeroIdentificacion;
             LugarNacimiento = lugarNacimiento;
             FechaNacimiento = fechaNacimiento;

@@ -51,7 +51,7 @@ namespace Domain.Entidades
 
         public int BuscarNumeroCuotaAPagar()
         {
-            int numeroCuotaAPagar = -1;
+            int numeroCuotaAPagar = 0;
             for (int i = 0; i < ListaCuotas.Count; i++)
             {
                 if (ListaCuotas[i].EstadoCuota.Equals("No Pagado"))
