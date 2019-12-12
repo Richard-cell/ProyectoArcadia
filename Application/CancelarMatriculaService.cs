@@ -22,9 +22,17 @@ namespace Application
             {
                 TimeSpan DiferenciaFechas = request.FechaCancelacion - matricula.FechaMatricula;
                 if (DiferenciaFechas.Days<=15) {
-                    _unitOfWork.MatriculaRepository.Delete(matricula);
-                    _unitOfWork.Commit();
-                    return new CancelarMatriculaResponse { Mensaje = $"Se cancelo la matricula con el codigo {request.CodMatricula}" };
+                    if (request.MotivoCancelacion.Length!=0)
+                    {
+                        _unitOfWork.MatriculaRepository.Delete(matricula);
+                        _unitOfWork.Commit();
+                        return new CancelarMatriculaResponse { Mensaje = $"Se cancelo la matricula con el codigo {request.CodMatricula}" };
+                    }
+                    else
+                    {
+                        return new CancelarMatriculaResponse { Mensaje = $"Indique el motivo de cancelacion de la matricula" };
+                    }
+                    
                 }
                 else
                 {

@@ -68,7 +68,7 @@ namespace ApplicationTest
                 TelefonoAcudiente = 3154177696,
                 SexoAcudiente = 'M',
                 EstratoSocialAcudiente = 1,
-                CorreoElectronicoAcudiente = "richard3.sanguino@gmail.com",
+                CorreoElectronicoAcudiente = "richard3.sanguino",
                 Parentezco = "Padre",
                 NumeroDocumentosAdjuntados = 8,
                 EstadoMatricula = "Activa"
@@ -99,7 +99,7 @@ namespace ApplicationTest
                 LugarEntreHermanosEstudiante = 2,
                 SeguroSocialEstudiante = "Si tiene",
                 PuntajeSisbenEstudiante = 12.5f,
-                NumeroIdentificacionAcudiente = 106842657,
+                NumeroIdentificacionAcudiente = 1068426585,
                 TipoDocumentoAcudiente = "CC",
                 PrimerNombreAcudiente = "Richard",
                 SegundoNombreAcudiente = "Jose",
@@ -109,7 +109,7 @@ namespace ApplicationTest
                 TelefonoAcudiente = 3154177696,
                 SexoAcudiente = 'M',
                 EstratoSocialAcudiente = 1,
-                CorreoElectronicoAcudiente = "richard3.sanguino@gmail.com",
+                CorreoElectronicoAcudiente = "richard3.sanguino",
                 Parentezco = "Padre",
                 NumeroDocumentosAdjuntados = 8,
                 EstadoMatricula = "Activa"
@@ -195,7 +195,7 @@ namespace ApplicationTest
                 TelefonoAcudiente = 3154177696,
                 SexoAcudiente = 'M',
                 EstratoSocialAcudiente = 1,
-                CorreoElectronicoAcudiente = "richard3.sanguino@gmail.com",
+                CorreoElectronicoAcudiente = "richard3.sanguino",
                 Parentezco = "Padre",
                 NumeroDocumentosAdjuntados = 8,
                 EstadoMatricula = "Activa"
@@ -236,7 +236,7 @@ namespace ApplicationTest
                 TelefonoAcudiente = 3154177696,
                 SexoAcudiente = 'M',
                 EstratoSocialAcudiente = 1,
-                CorreoElectronicoAcudiente = "richard3.sanguino@gmail.com",
+                CorreoElectronicoAcudiente = "richard3.sanguino",
                 Parentezco = "Padre",
                 NumeroDocumentosAdjuntados = 8,
                 EstadoMatricula = "Activa"
@@ -336,7 +336,7 @@ namespace ApplicationTest
                 TelefonoAcudiente = 3154177696,
                 SexoAcudiente = 'M',
                 EstratoSocialAcudiente = 1,
-                CorreoElectronicoAcudiente = "richard3.sanguino@gmail.com",
+                CorreoElectronicoAcudiente = "richard3.sanguino",
                 Parentezco = "Padre",
                 NumeroDocumentosAdjuntados = 8,
                 EstadoMatricula = "Activa"
@@ -377,7 +377,7 @@ namespace ApplicationTest
                 TelefonoAcudiente = 3154177696,
                 SexoAcudiente = 'M',
                 EstratoSocialAcudiente = 1,
-                CorreoElectronicoAcudiente = "richard3.sanguino@gmail.com",
+                CorreoElectronicoAcudiente = "richard3.sanguino",
                 Parentezco = "Padre",
                 NumeroDocumentosAdjuntados = 8,
                 EstadoMatricula = "Activa"
