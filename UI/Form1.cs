@@ -46,5 +46,23 @@ namespace UI
             FormRegistroNota form = new FormRegistroNota();
             form.ShowDialog();
         }
+
+        private void pagarCuotaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FormPagarCuotaDePension form = new FormPagarCuotaDePension();
+            form.ShowDialog();
+        }
+
+        private void cancelarToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FormCancelarMatricula form = new FormCancelarMatricula();
+            form.ShowDialog();
+        }
+
+        private void ingresarToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FormModificarNota form = new FormModificarNota();
+            form.ShowDialog();
+        }
     }
 }
