@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{D5103ACA-77BB-434D-9C26-ABD65D10CF16}</ProjectGuid>
+    <ProjectGuid>{A9E567E5-47CC-4D8B-B28C-5C1736079464}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <RootNamespace>UserInterface</RootNamespace>
-    <AssemblyName>UserInterface</AssemblyName>
+    <RootNamespace>UI</RootNamespace>
+    <AssemblyName>UI</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -52,17 +52,17 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormRegistrarAsignatura.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="FormRegistrarAsignatura.Designer.cs">
-      <DependentUpon>FormRegistrarAsignatura.cs</DependentUpon>
-    </Compile>
     <Compile Include="FormRegistrarMatricula.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormRegistrarMatricula.Designer.cs">
       <DependentUpon>FormRegistrarMatricula.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormRegistroAsignatura.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormRegistroAsignatura.Designer.cs">
+      <DependentUpon>FormRegistroAsignatura.cs</DependentUpon>
     </Compile>
     <Compile Include="FormRegistroCurso.cs">
       <SubType>Form</SubType>
@@ -87,11 +87,11 @@
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormRegistrarAsignatura.resx">
-      <DependentUpon>FormRegistrarAsignatura.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="FormRegistrarMatricula.resx">
       <DependentUpon>FormRegistrarMatricula.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormRegistroAsignatura.resx">
+      <DependentUpon>FormRegistroAsignatura.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormRegistroCurso.resx">
       <DependentUpon>FormRegistroCurso.cs</DependentUpon>

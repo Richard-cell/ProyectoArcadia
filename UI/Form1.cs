@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace UserInterface
+namespace UI
 {
     public partial class Form1 : Form
     {
@@ -17,33 +17,33 @@ namespace UserInterface
             InitializeComponent();
         }
 
-        private void registrarToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            FormRegistrarMatricula form2 = new FormRegistrarMatricula();
-            form2.ShowDialog();
-        }
-
         private void registrarToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            FormRegistroDocente formRegistroDocente = new FormRegistroDocente();
-            formRegistroDocente.ShowDialog();
+            FormRegistroDocente form = new FormRegistroDocente();
+            form.ShowDialog();
         }
 
-        private void registrarToolStripMenuItem2_Click(object sender, EventArgs e)
+        private void registrarToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            FormRegistroNota form = new FormRegistroNota();
+            FormRegistrarMatricula form = new FormRegistrarMatricula();
             form.ShowDialog();
         }
 
         private void registrarToolStripMenuItem3_Click(object sender, EventArgs e)
         {
-            FormRegistrarAsignatura form = new FormRegistrarAsignatura();
+            FormRegistroAsignatura form = new FormRegistroAsignatura();
             form.ShowDialog();
         }
 
         private void registrarToolStripMenuItem4_Click(object sender, EventArgs e)
         {
             FormRegistroCurso form = new FormRegistroCurso();
+            form.ShowDialog();
+        }
+
+        private void registrarToolStripMenuItem2_Click(object sender, EventArgs e)
+        {
+            FormRegistroNota form = new FormRegistroNota();
             form.ShowDialog();
         }
     }

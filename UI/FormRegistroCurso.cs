@@ -8,11 +8,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace UserInterface
+namespace UI
 {
-    public partial class FormRegistroDocente : Form
+    public partial class FormRegistroCurso : Form
     {
-        public FormRegistroDocente()
+        public FormRegistroCurso()
         {
             InitializeComponent();
         }

@@ -8,11 +8,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace UserInterface
+namespace UI
 {
-    public partial class FormRegistrarAsignatura : Form
+    public partial class FormRegistroAsignatura : Form
     {
-        public FormRegistrarAsignatura()
+        public FormRegistroAsignatura()
         {
             InitializeComponent();
         }
