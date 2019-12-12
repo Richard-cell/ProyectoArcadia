@@ -23,7 +23,7 @@ namespace WebApi.Controllers
             _context = context;
         }
 
-        [HttpPost]
+        [HttpPost("Realizar Matricula")]
         public ActionResult<RealizarMatriculaResponse> Post(RealizarMatriculaRequest request)
         {
             RealizarMatriculaService service = new RealizarMatriculaService(_unitOfWork);
@@ -39,7 +39,7 @@ namespace WebApi.Controllers
             return Ok(response);
         }
 
-        [HttpDelete]
+        [HttpDelete("Cancelar Matricula")]
         public ActionResult<CancelarMatriculaResponse> Post(CancelarMatriculaRequest request)
         {
             CancelarMatriculaService service = new CancelarMatriculaService(_unitOfWork);

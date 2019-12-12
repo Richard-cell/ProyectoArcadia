@@ -23,7 +23,7 @@ namespace WebApi.Controllers
             _context = context;
         }
 
-        [HttpPost]
+        [HttpPost("Crear Registro de Notas")]
         public ActionResult<CrearRegistroNotaEstudianteResponse> Post(CrearRegistroNotaEstudianteRequest request)
         {
             CrearRegistroNotaEstudianteService service = new CrearRegistroNotaEstudianteService(_unitOfWork);
@@ -39,7 +39,7 @@ namespace WebApi.Controllers
             return Ok(response);
         }
 
-        [HttpPut]
+        [HttpPut("Modificar Nota")]
         public ActionResult<ModificarNotasResponse> Put(ModificarNotasRequest request)
         {
             ModificarNotasService service = new ModificarNotasService(_unitOfWork);

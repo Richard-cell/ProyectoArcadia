@@ -31,7 +31,7 @@ namespace WebApi.Controllers
             return Ok(response);
         }
 
-        [HttpPut]
+        [HttpPut("Modificar Estudiante")]
         public ActionResult<ModificarEstudianteResponse> Put(ModificarEstudianteRequest request)
         {
             ModificarEstudianteService service = new ModificarEstudianteService(_unitOfWork);

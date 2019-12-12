@@ -16,7 +16,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 
-namespace WebApi
+namespace WebAppiV2
 {
     public class Startup
     {
@@ -34,9 +34,7 @@ namespace WebApi
             services.AddScoped<IUnitOfWork, UnitOfWork>(); //Se Instancia un peticion
             services.AddScoped<IDbContext, ColegioContext>(); //Se Instancia un peticion
             services.AddControllers();
-            
-            #region SwaggerOpen Api
-            //Register the Swagger services
+
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo
@@ -59,7 +57,6 @@ namespace WebApi
                 });
             });
 
-            #endregion
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -76,7 +73,7 @@ namespace WebApi
 
             app.UseAuthorization();
 
-            #region Activar SwaggerUI
+
             app.UseSwagger();
             app.UseSwaggerUI(
                 options =>
@@ -84,7 +81,6 @@ namespace WebApi
                     options.SwaggerEndpoint("/swagger/v1/swagger.json", "Signus Prespuesto v1");
                 }
             );
-            #endregion
 
             app.UseEndpoints(endpoints =>
             {

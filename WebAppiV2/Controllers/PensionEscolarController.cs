@@ -23,7 +23,7 @@ namespace WebApi.Controllers
             _context = context;
         }
 
-        [HttpPost]
+        [HttpPost("Pagar Cuota Pension ")]
         public ActionResult<PagarCuotaPensionResponse> Post(PagarCuotaPensionRequest request)
         {
             PagarCuotaPensionService service = new PagarCuotaPensionService(_unitOfWork);

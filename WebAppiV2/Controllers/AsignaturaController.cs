@@ -23,7 +23,7 @@ namespace WebApi.Controllers
             _context = context;
         }
 
-        [HttpPost]
+        [HttpPost("Registrar Asignatura")]
         public ActionResult<RegistrarAsignaturaResponse> Post(RegistrarAsignaturaRequest request)
         {
             RegistrarAsignaturaService _service = new RegistrarAsignaturaService(_unitOfWork);
@@ -39,7 +39,7 @@ namespace WebApi.Controllers
             return Ok(response);
         }
 
-        [HttpPost]
+        [HttpPost("Asignar Asignatura a docente")]
         public ActionResult<AsignarDocenteAsignaturaResponse> Post(AsignarDocenteAsignaturaRequest request)
         {
             AsignarDocenteAsignaturaService _service = new AsignarDocenteAsignaturaService(_unitOfWork);
@@ -47,7 +47,7 @@ namespace WebApi.Controllers
             return Ok(response);
         }
 
-        [HttpPut]
+        [HttpPut("Modificar Asignatura")]
         public ActionResult<ModificarAsignaturaResponse> Put(ModificarAsignaturaRequest request)
         {
             ModificarAsignaturaService _service = new ModificarAsignaturaService(_unitOfWork);
