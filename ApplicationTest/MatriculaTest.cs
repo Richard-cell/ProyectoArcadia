@@ -63,7 +63,7 @@ namespace ApplicationTest
                 EstadoMatricula = "Activa"
             };
 
-            RealizarMatriculaService service = new RealizarMatriculaService(new UnitOfWork(_contextInMemory));
+            RealizarMatriculaService service = new RealizarMatriculaService(new UnitOfWork(_contextInBD));
             var response = service.Ejecutar(request);
             Assert.AreEqual("Se creó con exito la matricula 1001",response.Mensaje);
         }

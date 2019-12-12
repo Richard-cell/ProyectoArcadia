@@ -9,12 +9,27 @@ namespace Domain.Entidades
     {
         private  static List<string> _listaParentezco;
         public string Parentezco { get; private set; }
-        public Estudiante Estudiante { get; set; }
+        public List<Estudiante> ListaEstudiantes { get; set; }
         public Acudiente() { }
         public Acudiente( string parentezco, string tipoDocumento,long numeroIdentificacion,string primerNombre, string segundoNombre, string primerApellido, string segundoApellido, string direccion, long telefono, char sexo, int estratoSocial, string correoElectronico) :base(tipoDocumento,primerNombre,segundoNombre,primerApellido,segundoApellido,direccion,telefono, sexo, estratoSocial, correoElectronico) {
             Id = numeroIdentificacion;
             Parentezco = parentezco;
+            ListaEstudiantes = new List<Estudiante>();
             AlmacenarListaDeParientesPermitidos();
+        }
+
+        public bool IsAlmacenarEstudiante(Estudiante estudiante)
+        {
+            try
+            {
+                ListaEstudiantes.Add(estudiante);
+                return true;
+            }
+            catch (Exception E)
+            {
+                Console.WriteLine(E);
+                return false;
+            }
         }
 
         public static bool IsValidarParentezco(string parentezcoAcudiente)

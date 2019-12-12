@@ -20,7 +20,7 @@ namespace Application
             Curso curso = _unitOfWork.CursoRepository.FindFirstOrDefault(x=>x.Id==request.CodigoCurso);
             Estudiante estudiante = _unitOfWork.EstudianteRepository.FindFirstOrDefault(x=>x.Id==request.NumeroIdentificacionEstudiante);
             
-            if (estudiante.CursoId==null)
+            if (estudiante!=null)
             {
                 curso.IsAlmacenarEstudiante(estudiante);
                 _unitOfWork.CursoRepository.Edit(curso);

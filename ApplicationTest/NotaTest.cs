@@ -428,7 +428,7 @@ namespace ApplicationTest
             };
             ModificarNotasService serviceModificar = new ModificarNotasService(new UnitOfWork(_contextInMemory));
             var response = serviceModificar.Ejecutar(requestModificar);
-            Assert.AreEqual("Se ha modificado las notas de la asignatura Español para el estudiante Richard", response.Mensaje);
+            Assert.AreEqual("Se ha modificado las notas de la asignatura Español para el estudiante Anuar", response.Mensaje);
         }
     }
 }
