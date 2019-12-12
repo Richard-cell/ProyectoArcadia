@@ -32,7 +32,7 @@ namespace DomainTest
                 3154787847,
                 'F',
                 2,
-                "alba@gmail.com"
+                "alba"
                 ); 
 
             Asignatura asignatura = new Asignatura(101, "calculo");
@@ -67,7 +67,7 @@ namespace DomainTest
                 2,
                 32.7f,
                 'M',
-                "anuarsanguino@gmail.com",
+                "anuarsanguino",
                 pensionEscolar
                 );
             estudiante.IsAlmacenarNota(listaNotas);
@@ -96,7 +96,7 @@ namespace DomainTest
                 2,
                 32.7f,
                 'M',
-                "anuarsanguino@gmail.com",
+                "anuarsanguino",
                 pensionEscolar
                 );
             estudiante.IsAlmacenarNota(listaNotas);

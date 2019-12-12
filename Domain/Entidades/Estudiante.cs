@@ -96,5 +96,10 @@ namespace Domain.Entidades
             _listaRH.Add("AB+");
             _listaRH.Add("AB-");
         }
+
+        protected override string getEstandarCorreo()
+        {
+            return "@gmail.com";
+        }
     }
 }

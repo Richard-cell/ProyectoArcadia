@@ -41,5 +41,10 @@ namespace Domain.Entidades
             _listaParentezco.Add("Tio");
             _listaParentezco.Add("Tia");
         }
+
+        protected override string getEstandarCorreo() { 
+            return "@hotmail.com";
+        }
+
     }
 }

@@ -31,7 +31,14 @@ namespace Domain.Base
             Telefono = telefono;
             Sexo = sexo;
             EstratoSocial = estrato;
-            CorreoElectronico = correoElectronico;
+            CorreoElectronico = DeterminarCorreoElectronico(correoElectronico);
         }
+
+        public string DeterminarCorreoElectronico(string correoElectronico)
+        {
+            return correoElectronico + getEstandarCorreo();
+        }
+
+        protected abstract string getEstandarCorreo();
     }
 }

@@ -6,22 +6,18 @@ using System.Text;
 
 namespace DomainTest
 {
-    public class AsignaturaTest
+    public class DocenteTest
     {
+
         [SetUp]
         public void Setup()
         {
         }
 
-
         [Test]
-        public void ValidarRegistroDocentes() {
-            Asignatura asignatura = new Asignatura(
-                1001,
-                "Español"
-            );
-
-            Docente docente1 = new Docente(
+        public void ValidarAñosDeExperiencia()
+        {
+            Docente docente = new Docente(
                 "C.C",
                 1065842658,
                 "Richard",
@@ -36,10 +32,16 @@ namespace DomainTest
                 1,
                 "richard.3"
                 );
-            Docente docente2 = new Docente(
+            Assert.AreEqual(Docente.IsValidarAñosExperiencia(docente.AñosExperiencia),false);
+        }
+
+        [Test]
+        public void ValidarEstandarCorreo()
+        {
+            Docente docente = new Docente(
                 "C.C",
-                1065842657,
-                "Anuar",
+                1065842658,
+                "Richard",
                 "Andres",
                 "Sanguino",
                 "Ramirez",
@@ -49,16 +51,9 @@ namespace DomainTest
                 21,
                 2,
                 1,
-                "anuar.sanguino"
+                "richard3"
                 );
-
-            DocenteAsignatura docenteAnuar = new DocenteAsignatura(docente2,asignatura);
-            DocenteAsignatura docenteRichard = new DocenteAsignatura(docente1,asignatura);
-
-            asignatura.IsAlmacenarDocentes(docenteAnuar);
-            asignatura.IsAlmacenarDocentes(docenteRichard);
-
-            Assert.AreEqual(asignatura.ListaDocenteAsignaturas[0].Docente.PrimerNombre,"Anuar");
+            Assert.AreEqual("richard3@ovf.com",docente.CorreoElectronico);
         }
     }
 }

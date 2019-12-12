@@ -54,5 +54,9 @@ namespace Domain.Entidades
                 return false;
             }
         }
+        protected override string getEstandarCorreo()
+        {
+            return "@ovf.com";
+        }
     }
 }

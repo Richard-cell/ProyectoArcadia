@@ -54,7 +54,7 @@ namespace DomainTest
                 2,
                 32.7f,
                 'M',
-                "anuarsanguino@gmail.com",
+                "anuarsanguino",
                 pensionEscolar
                 );
         }
