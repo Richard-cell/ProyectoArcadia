@@ -1,11 +1,44 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.0</TargetFramework>
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Repositorios\" />
+    <Compile Remove="Migrations\20191117024529_MigracionInicial.cs" />
+    <Compile Remove="Migrations\20191117024529_MigracionInicial.Designer.cs" />
+    <Compile Remove="Migrations\20191121144257_MigracionCorregida.cs" />
+    <Compile Remove="Migrations\20191121144257_MigracionCorregida.Designer.cs" />
+    <Compile Remove="Migrations\20191121151856_MigracionCorregida.cs" />
+    <Compile Remove="Migrations\20191121151856_MigracionCorregida.Designer.cs" />
+    <Compile Remove="Migrations\20191121152433_MigracionCorregida.cs" />
+    <Compile Remove="Migrations\20191121152433_MigracionCorregida.Designer.cs" />
+    <Compile Remove="Migrations\20191121165012_MigracionCorregida.cs" />
+    <Compile Remove="Migrations\20191121165012_MigracionCorregida.Designer.cs" />
+    <Compile Remove="Migrations\20191121180012_MigracionCorregida.cs" />
+    <Compile Remove="Migrations\20191121180012_MigracionCorregida.Designer.cs" />
+    <Compile Remove="Migrations\20191121220913_InitialCreate.cs" />
+    <Compile Remove="Migrations\20191121220913_InitialCreate.Designer.cs" />
+    <Compile Remove="Migrations\20191124154023_InitialCreate.cs" />
+    <Compile Remove="Migrations\20191124154023_InitialCreate.Designer.cs" />
+    <Compile Remove="Migrations\20191211012649_MigracionInical.cs" />
+    <Compile Remove="Migrations\20191211012649_MigracionInical.Designer.cs" />
+    <Compile Remove="Migrations\20191211012900_MigracionInical.cs" />
+    <Compile Remove="Migrations\20191211012900_MigracionInical.Designer.cs" />
+    <Compile Remove="Migrations\20191211013154_MigracionInical2.cs" />
+    <Compile Remove="Migrations\20191211013154_MigracionInical2.Designer.cs" />
+    <Compile Remove="Migrations\20191211013301_MigracionInical2.cs" />
+    <Compile Remove="Migrations\20191211013301_MigracionInical2.Designer.cs" />
+    <Compile Remove="Migrations\20191211013812_MigracionInical2.cs" />
+    <Compile Remove="Migrations\20191211013812_MigracionInical2.Designer.cs" />
+    <Compile Remove="Migrations\20191211015013_Migracion2.cs" />
+    <Compile Remove="Migrations\20191211015013_Migracion2.Designer.cs" />
+    <Compile Remove="Migrations\20191211015719_Migracion3.cs" />
+    <Compile Remove="Migrations\20191211015719_Migracion3.Designer.cs" />
+    <Compile Remove="Migrations\20191212115845_migracionv3.cs" />
+    <Compile Remove="Migrations\20191212115845_migracionv3.Designer.cs" />
+    <Compile Remove="Migrations\20191212120147_migracionv3.cs" />
+    <Compile Remove="Migrations\20191212120147_migracionv3.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>
